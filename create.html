@@ -4,156 +4,331 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Create Portfolio</title>
+    <title>Create Your Portfolio</title>
 
     <style>
+
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            color: #222;
-            padding-bottom: 40px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f8f9ff,
+                    #e8f7ff
+                );
+
+            color: #1f2937;
+            min-height: 100vh;
         }
 
-        header {
-            background: #1f2937;
+        /* Header */
+
+        .top-bar {
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #6366f1
+            );
+
             color: white;
-            padding: 20px;
+            padding: 25px 20px;
+
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .top-bar h1 {
+            margin: 0;
             text-align: center;
+            font-size: 30px;
         }
 
-        header h1 {
-            margin-bottom: 8px;
+        .top-bar p {
+            text-align: center;
+            margin: 8px 0 0;
+            opacity: 0.9;
         }
 
-        header p {
-            color: #d1d5db;
-        }
+        /* Main */
 
-        .container {
-            width: 90%;
+        main {
+            width: 100%;
             max-width: 800px;
-            margin: 30px auto;
+
+            margin: 35px auto;
+            padding: 0 20px;
         }
+
+        /* Form */
+
+        form {
+            background: rgba(255, 255, 255, 0.95);
+
+            padding: 30px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 10px 35px rgba(31, 41, 55, 0.10);
+        }
+
+        /* Sections */
 
         .form-section {
-            background: white;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+
+            padding: 22px;
+
+            background: #fafbff;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 14px;
         }
 
         .form-section h2 {
+            margin-top: 0;
             margin-bottom: 20px;
-            color: #1f2937;
+
+            color: #4f46e5;
+
+            font-size: 21px;
+
+            border-left: 4px solid #6366f1;
+
+            padding-left: 10px;
         }
+
+        /* Form Groups */
 
         .form-group {
             margin-bottom: 18px;
         }
 
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
         label {
             display: block;
+
             margin-bottom: 7px;
+
             font-weight: bold;
+
+            color: #374151;
         }
 
         input,
         textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 16px;
-        }
 
-        textarea {
-            min-height: 120px;
-            resize: vertical;
+            padding: 12px 14px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 9px;
+
+            background: white;
+
+            color: #1f2937;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.2s;
         }
 
         input:focus,
         textarea:focus {
-            outline: none;
-            border-color: #2563eb;
+            border-color: #6366f1;
+
+            box-shadow:
+                0 0 0 3px rgba(99, 102, 241, 0.12);
         }
 
-        .button-area {
-            text-align: center;
+        textarea {
+            min-height: 110px;
+
+            resize: vertical;
+
+            font-family: Arial, sans-serif;
         }
 
-        .save-btn {
-            border: none;
-            background: #2563eb;
-            color: white;
-            padding: 14px 30px;
-            border-radius: 8px;
-            font-size: 17px;
+        input[type="file"] {
+            padding: 10px;
+
+            background: #f8f9ff;
+
             cursor: pointer;
         }
 
+        /* Buttons */
+
+        .button-area {
+            text-align: center;
+
+            margin-top: 10px;
+        }
+
+        .save-btn {
+            width: 100%;
+
+            padding: 14px 20px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #6366f1
+            );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            box-shadow:
+                0 5px 15px rgba(79, 70, 229, 0.25);
+        }
+
         .save-btn:hover {
-            background: #1d4ed8;
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .save-btn:active {
+            transform: translateY(0);
         }
 
         .back-btn {
             display: inline-block;
-            margin-top: 15px;
-            color: #2563eb;
+
+            margin-top: 18px;
+
             text-decoration: none;
+
+            color: #4f46e5;
+
+            font-weight: bold;
+
+            transition: 0.2s;
         }
 
         .back-btn:hover {
-            text-decoration: underline;
+            color: #3730a3;
         }
+
+        /* Small screens */
+
+        @media (max-width: 600px) {
+
+            .top-bar h1 {
+                font-size: 25px;
+            }
+
+            main {
+                margin: 20px auto;
+                padding: 0 12px;
+            }
+
+            form {
+                padding: 18px;
+            }
+
+            .form-section {
+                padding: 17px;
+            }
+
+        }
+
     </style>
 </head>
 
 <body>
 
-    <header>
+    <!-- Header -->
+
+    <header class="top-bar">
+
         <h1>Create Your Portfolio</h1>
-        <p>Enter your information below.</p>
+
+        <p>
+            Enter your information below.
+        </p>
+
     </header>
 
-    <main class="container">
+
+    <!-- Main -->
+
+    <main>
 
         <form id="portfolioForm">
 
+
             <!-- Personal Information -->
+
             <section class="form-section">
 
                 <h2>Personal Information</h2>
 
                 <div class="form-group">
-                    <label for="fullName">Full Name</label>
+
+                    <label for="fullName">
+                        Full Name
+                    </label>
+
                     <input
                         type="text"
                         id="fullName"
-                        name="fullName"
+                        name="full_name"
                         placeholder="Enter your full name"
                         required
                     >
+
                 </div>
 
+
                 <div class="form-group">
-                    <label for="profilePicture">Profile Picture</label>
+
+                    <label for="profilePicture">
+                        Profile Picture
+                    </label>
+
                     <input
                         type="file"
                         id="profilePicture"
-                        name="profilePicture"
+                        name="profile_picture"
                         accept="image/*"
                     >
+
                 </div>
 
+
                 <div class="form-group">
-                    <label for="email">Email</label>
+
+                    <label for="email">
+                        Email
+                    </label>
+
                     <input
                         type="email"
                         id="email"
@@ -161,128 +336,189 @@
                         placeholder="example@email.com"
                         required
                     >
+
                 </div>
 
+
                 <div class="form-group">
-                    <label for="contact">Contact Number</label>
+
+                    <label for="contact">
+                        Contact Number
+                    </label>
+
                     <input
                         type="tel"
                         id="contact"
-                        name="contact"
+                        name="contact_number"
                         placeholder="09XXXXXXXXX"
                     >
+
                 </div>
 
+
                 <div class="form-group">
-                    <label for="address">Address</label>
+
+                    <label for="address">
+                        Address
+                    </label>
+
                     <input
                         type="text"
                         id="address"
                         name="address"
                         placeholder="Enter your address"
                     >
+
                 </div>
 
+
                 <div class="form-group">
-                    <label for="about">About Me</label>
+
+                    <label for="about">
+                        About Me
+                    </label>
+
                     <textarea
                         id="about"
-                        name="about"
+                        name="about_me"
                         placeholder="Tell something about yourself..."
                     ></textarea>
+
                 </div>
 
             </section>
 
+
             <!-- Education -->
+
             <section class="form-section">
 
                 <h2>Educational Background</h2>
 
                 <div class="form-group">
-                    <label for="education">Education</label>
+
+                    <label for="education">
+                        Education
+                    </label>
+
                     <textarea
                         id="education"
                         name="education"
                         placeholder="School, course, year, achievements, etc."
                     ></textarea>
+
                 </div>
 
             </section>
 
+
             <!-- Skills -->
+
             <section class="form-section">
 
                 <h2>Skills</h2>
 
                 <div class="form-group">
-                    <label for="skills">Skills</label>
+
+                    <label for="skills">
+                        Skills
+                    </label>
+
                     <textarea
                         id="skills"
                         name="skills"
                         placeholder="Example: HTML, CSS, JavaScript, Java, C..."
                     ></textarea>
+
                 </div>
 
             </section>
 
+
             <!-- Projects -->
+
             <section class="form-section">
 
                 <h2>Projects</h2>
 
                 <div class="form-group">
-                    <label for="projects">Projects</label>
+
+                    <label for="projects">
+                        Projects
+                    </label>
+
                     <textarea
                         id="projects"
-                        name="projects"
+                        name="project"
                         placeholder="Describe your projects..."
                     ></textarea>
+
                 </div>
 
             </section>
 
+
             <!-- Work Experience -->
+
             <section class="form-section">
 
                 <h2>Work Experience</h2>
 
                 <div class="form-group">
-                    <label for="experience">Work Experience</label>
+
+                    <label for="experience">
+                        Work Experience
+                    </label>
+
                     <textarea
                         id="experience"
-                        name="experience"
+                        name="work_experience"
                         placeholder="Company, position, responsibilities, etc."
                     ></textarea>
+
                 </div>
 
             </section>
 
+
             <!-- Social Links -->
+
             <section class="form-section">
 
                 <h2>Social Media / Website</h2>
 
                 <div class="form-group">
-                    <label for="socialLinks">Links</label>
+
+                    <label for="socialLinks">
+                        Links
+                    </label>
+
                     <textarea
                         id="socialLinks"
-                        name="socialLinks"
+                        name="social_links"
                         placeholder="Facebook, Instagram, GitHub, personal website, etc."
                     ></textarea>
+
                 </div>
 
             </section>
 
+
+            <!-- Buttons -->
+
             <div class="button-area">
 
-                <button type="submit" class="save-btn">
+                <button
+                    type="submit"
+                    class="save-btn"
+                >
                     Save Portfolio
                 </button>
 
-                <br>
-
-                <a href="index.html" class="back-btn">
+                <a
+                    href="index.html"
+                    class="back-btn"
+                >
                     ← Back to Home
                 </a>
 
@@ -292,14 +528,117 @@
 
     </main>
 
+
+    <!-- Supabase -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase.js"></script>
+
+
+    <!-- Save Portfolio -->
+
     <script>
-        const form = document.getElementById("portfolioForm");
 
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
+        const form =
+            document.getElementById("portfolioForm");
 
-            alert("The form is working! We will connect this button to Supabase later.");
-        });
+
+        form.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const {
+                    data,
+                    error
+                } = await supabase
+
+                    .from("portfolios")
+
+                    .insert([
+                        {
+
+                            full_name:
+                                document
+                                .getElementById("fullName")
+                                .value,
+
+                            email:
+                                document
+                                .getElementById("email")
+                                .value,
+
+                            contact_number:
+                                document
+                                .getElementById("contact")
+                                .value,
+
+                            address:
+                                document
+                                .getElementById("address")
+                                .value,
+
+                            about_me:
+                                document
+                                .getElementById("about")
+                                .value,
+
+                            education:
+                                document
+                                .getElementById("education")
+                                .value,
+
+                            skills:
+                                document
+                                .getElementById("skills")
+                                .value,
+
+                            project:
+                                document
+                                .getElementById("projects")
+                                .value,
+
+                            work_experience:
+                                document
+                                .getElementById("experience")
+                                .value,
+
+                            social_links:
+                                document
+                                .getElementById("socialLinks")
+                                .value
+
+                        }
+                    ]);
+
+
+                if (error) {
+
+                    console.error(error);
+
+                    alert(
+                        "Error saving portfolio:\n"
+                        + error.message
+                    );
+
+                    return;
+                }
+
+
+                alert(
+                    "Portfolio saved successfully!"
+                );
+
+
+                form.reset();
+
+            }
+
+        );
+
     </script>
 
 </body>
