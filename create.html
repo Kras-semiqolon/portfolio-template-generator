@@ -1,171 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Create Portfolio</title>
-
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #dbeafe, #e0e7ff, #f3e8ff);
-    padding-bottom: 50px;
-}
-
-header {
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
-    color: white;
-    text-align: center;
-    padding: 28px 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-}
-
-header h1 {
-    font-size: 28px;
-    margin-bottom: 8px;
-}
-
-header p {
-    font-size: 14px;
-    opacity: 0.9;
-}
-
-main {
-    width: 100%;
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 0 15px;
-}
-
-.form-card {
-    background: white;
-    padding: 25px;
-    margin-bottom: 20px;
-    border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-}
-
-.section-title {
-    color: #4f46e5;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #e0e7ff;
-}
-
-.input-group {
-    margin-bottom: 18px;
-}
-
-.input-group:last-child {
-    margin-bottom: 0;
-}
-
-label {
-    display: block;
-    color: #374151;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 7px;
-}
-
-input,
-textarea,
-select {
-    width: 100%;
-    padding: 13px 15px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    background: white;
-    color: #111827;
-    font-size: 15px;
-    outline: none;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
-}
-
-textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-#photoPreview {
-    display: none;
-    width: 110px;
-    height: 110px;
-    margin-top: 12px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #e0e7ff;
-}
-
-.save-area {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.save-btn {
-    width: 100%;
-    max-width: 350px;
-    padding: 16px 25px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
-    color: white;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 6px 15px rgba(79, 70, 229, 0.3);
-}
-
-.save-btn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
-
-.secondary-btn {
-    display: none;
-    margin: 12px auto 0;
-    background: white;
-    color: #4f46e5;
-    border: 2px solid #4f46e5;
-    box-shadow: none;
-}
-
-.status {
-    margin-top: 15px;
-    font-size: 15px;
-    font-weight: bold;
-    min-height: 22px;
-}
-
-.success { color: #15803d; }
-.error { color: #dc2626; }
-.saving { color: #4f46e5; }
-
-@media (max-width: 600px) {
-    header h1 { font-size: 24px; }
-    main { margin-top: 20px; }
-    .form-card { padding: 20px; }
-}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+body { min-height: 100vh; background: linear-gradient(135deg, #dbeafe, #e0e7ff, #f3e8ff); padding-bottom: 50px; }
+.topnav { display: flex; justify-content: center; gap: 4px; padding: 10px; background: linear-gradient(135deg, #4f46e5, #7c3aed); position: sticky; top: 0; z-index: 10; }
+.topnav a { padding: 8px 12px; border-radius: 20px; color: white; font-size: 14px; font-weight: bold; text-decoration: none; }
+.topnav a.active { background: rgba(255,255,255,0.25); }
+header { background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; text-align: center; padding: 26px 20px; }
+header h1 { font-size: 26px; margin-bottom: 6px; }
+header p { font-size: 14px; opacity: 0.9; }
+main { max-width: 800px; margin: 25px auto; padding: 0 15px; }
+.form-card { background: white; padding: 22px; margin-bottom: 18px; border-radius: 18px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+.section-title { color: #4f46e5; font-size: 20px; font-weight: bold; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid #e0e7ff; }
+.input-group { margin-bottom: 16px; }
+.input-group:last-child { margin-bottom: 0; }
+label { display: block; color: #374151; font-size: 14px; font-weight: bold; margin-bottom: 7px; }
+input, textarea, select { width: 100%; padding: 13px 15px; border: 1px solid #d1d5db; border-radius: 10px; background: white; color: #111827; font-size: 15px; outline: none; }
+input:focus, textarea:focus, select:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.12); }
+textarea { min-height: 110px; resize: vertical; }
+#photoPreview { display: none; width: 110px; height: 110px; margin-top: 12px; border-radius: 50%; object-fit: cover; border: 3px solid #e0e7ff; }
+.save-area { text-align: center; margin-top: 10px; }
+.save-btn { width: 100%; max-width: 350px; padding: 16px 25px; border: none; border-radius: 12px; background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; font-size: 17px; font-weight: bold; cursor: pointer; box-shadow: 0 6px 15px rgba(79,70,229,0.3); }
+.save-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+.secondary-btn { display: none; margin: 12px auto 0; background: white; color: #4f46e5; border: 2px solid #4f46e5; box-shadow: none; }
+.status { margin-top: 15px; font-size: 15px; font-weight: bold; min-height: 22px; }
+.success { color: #15803d; } .error { color: #dc2626; } .saving { color: #4f46e5; }
 </style>
 </head>
-
 <body>
+
+<nav class="topnav">
+    <a href="create.html" class="active">Create</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="manage.html">Manage</a>
+    <a href="template.html">Template</a>
+</nav>
 
 <header>
     <h1 id="pageTitle">Create Your Portfolio</h1>
@@ -173,93 +46,72 @@ textarea {
 </header>
 
 <main>
-
 <form id="portfolioForm">
 
     <div class="form-card">
         <div class="section-title">Personal Information</div>
-
-        <div class="input-group">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" placeholder="Enter your full name" required>
-        </div>
-
-        <div class="input-group">
-            <label for="photoFile">Profile Picture</label>
+        <div class="input-group"><label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="Enter your full name" required></div>
+        <div class="input-group"><label for="photoFile">Profile Picture</label>
             <input type="file" id="photoFile" accept="image/*">
-            <img id="photoPreview" alt="Preview">
-        </div>
-
-        <div class="input-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Enter your email" required>
-        </div>
-
-        <div class="input-group">
-            <label for="contactNumber">Contact Number</label>
-            <input type="text" id="contactNumber" placeholder="Enter your contact number">
-        </div>
-
-        <div class="input-group">
-            <label for="address">Address</label>
-            <input type="text" id="address" placeholder="Enter your address">
-        </div>
+            <img id="photoPreview" alt="Preview"></div>
+        <div class="input-group"><label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email" required></div>
+        <div class="input-group"><label for="contactNumber">Contact Number</label>
+            <input type="text" id="contactNumber" placeholder="Enter your contact number"></div>
+        <div class="input-group"><label for="address">Address</label>
+            <input type="text" id="address" placeholder="Enter your address"></div>
     </div>
 
     <div class="form-card">
         <div class="section-title">About Me</div>
-        <div class="input-group">
-            <label for="aboutMe">About Me</label>
-            <textarea id="aboutMe" placeholder="Tell people about yourself..."></textarea>
-        </div>
+        <div class="input-group"><textarea id="aboutMe" placeholder="Tell people about yourself..."></textarea></div>
     </div>
 
     <div class="form-card">
         <div class="section-title">Education</div>
-        <div class="input-group">
-            <label for="education">Education</label>
-            <textarea id="education" placeholder="Example: BS Information Technology - Asian College of Technology"></textarea>
-        </div>
+        <div class="input-group"><textarea id="education" placeholder="Example: BS Information Technology - Asian College of Technology"></textarea></div>
     </div>
 
     <div class="form-card">
         <div class="section-title">Skills</div>
-        <div class="input-group">
-            <label for="skills">Skills</label>
-            <textarea id="skills" placeholder="Example: HTML, CSS, JavaScript, Java..."></textarea>
-        </div>
+        <div class="input-group"><textarea id="skills" placeholder="Example: HTML, CSS, JavaScript, Java..."></textarea></div>
     </div>
 
     <div class="form-card">
         <div class="section-title">Projects</div>
-        <div class="input-group">
-            <label for="project">Projects</label>
-            <textarea id="project" placeholder="Describe your projects..."></textarea>
-        </div>
+        <div class="input-group"><label for="project">Project Description</label>
+            <textarea id="project" placeholder="Describe your projects..."></textarea></div>
+        <div class="input-group"><label for="projectLink">Project Link</label>
+            <input type="text" id="projectLink" placeholder="https://..."></div>
     </div>
 
     <div class="form-card">
         <div class="section-title">Work Experience</div>
-        <div class="input-group">
-            <label for="workExperience">Work Experience</label>
-            <textarea id="workExperience" placeholder="Describe your work experience..."></textarea>
-        </div>
+        <div class="input-group"><label for="company">Company / Organization</label>
+            <input type="text" id="company"></div>
+        <div class="input-group"><label for="position">Position</label>
+            <input type="text" id="position"></div>
+        <div class="input-group"><label for="workDescription">Description</label>
+            <textarea id="workDescription" placeholder="Describe your work experience..."></textarea></div>
     </div>
 
     <div class="form-card">
-        <div class="section-title">Social Links</div>
-        <div class="input-group">
-            <label for="socialLinks">Social Links</label>
-            <textarea id="socialLinks" placeholder="GitHub, Facebook, LinkedIn, etc."></textarea>
-        </div>
+        <div class="section-title">Social Media / Website Links</div>
+        <div class="input-group"><label for="website">Website</label>
+            <input type="text" id="website"></div>
+        <div class="input-group"><label for="facebook">Facebook</label>
+            <input type="text" id="facebook"></div>
+        <div class="input-group"><label for="linkedin">LinkedIn</label>
+            <input type="text" id="linkedin"></div>
+        <div class="input-group"><label for="github">GitHub</label>
+            <input type="text" id="github"></div>
     </div>
 
     <div class="form-card">
         <div class="section-title">Portfolio Template</div>
         <div class="input-group">
-            <label for="template">Choose Template</label>
             <select id="template">
-                <option value="">Select a template</option>
                 <option value="modern">Modern</option>
                 <option value="classic">Classic</option>
                 <option value="minimal">Minimal</option>
@@ -268,244 +120,165 @@ textarea {
     </div>
 
     <div class="save-area">
-
-        <button type="submit" class="save-btn" id="saveButton">
-            Save Portfolio
-        </button>
-
+        <button type="submit" class="save-btn" id="saveButton">Save Portfolio</button>
         <div id="saveStatus" class="status"></div>
-
-        <button type="button" class="save-btn secondary-btn" id="viewButton">
-            View My Portfolio
-        </button>
-
-        <button type="button" class="save-btn secondary-btn" id="manageButton">
-            Manage Portfolios
-        </button>
-
+        <button type="button" class="save-btn secondary-btn" id="viewButton">View My Portfolio</button>
+        <button type="button" class="save-btn secondary-btn" id="templateButton">Change Template</button>
+        <button type="button" class="save-btn secondary-btn" id="manageButton">Manage Portfolios</button>
+        <button type="button" class="save-btn secondary-btn" id="galleryButton">Browse All Portfolios</button>
     </div>
 
 </form>
-
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
-
 <script>
 // @ts-nocheck
-
 document.addEventListener("DOMContentLoaded", function () {
 
     var form = document.getElementById("portfolioForm");
     var saveButton = document.getElementById("saveButton");
     var saveStatus = document.getElementById("saveStatus");
-    var viewButton = document.getElementById("viewButton");
-    var manageButton = document.getElementById("manageButton");
     var photoFile = document.getElementById("photoFile");
     var photoPreview = document.getElementById("photoPreview");
+    var afterButtons = ["viewButton", "templateButton", "manageButton", "galleryButton"];
 
-    // If the URL has ?id=..., we are editing an existing portfolio
     var editId = new URLSearchParams(window.location.search).get("id");
 
-    // Form field id  ->  database column
+    // form field id -> database column
     var fields = {
-        fullName: "full_name",
-        email: "email",
-        contactNumber: "contact_number",
-        address: "address",
-        aboutMe: "about_me",
-        education: "education",
-        skills: "skills",
-        project: "projects",
-        workExperience: "work_experience",
-        socialLinks: "social_links",
-        template: "template"
+        fullName: "full_name", email: "email", contactNumber: "contact_number",
+        address: "address", aboutMe: "about_me", education: "education",
+        skills: "skills", project: "projects", projectLink: "project_link",
+        company: "company", position: "position", workDescription: "work_description",
+        website: "website", facebook: "facebook", linkedin: "linkedin",
+        github: "github", template: "template"
     };
 
     var currentPhoto = "";
 
+    function showAfter(show) {
+        afterButtons.forEach(function (id) {
+            document.getElementById(id).style.display = show ? "block" : "none";
+        });
+    }
+
+    function go(page, id) {
+        window.location.href = page + (id ? "?id=" + encodeURIComponent(id) : "");
+    }
+
+    document.getElementById("manageButton").onclick = function () { go("manage.html"); };
+    document.getElementById("galleryButton").onclick = function () { go("gallery.html"); };
 
     // ---------- IMAGE CHOOSER ----------
-
     function showPhoto(src) {
-        if (src) {
-            photoPreview.src = src;
-            photoPreview.style.display = "block";
-        } else {
-            photoPreview.style.display = "none";
-        }
+        photoPreview.src = src || "";
+        photoPreview.style.display = src ? "block" : "none";
     }
 
     photoFile.addEventListener("change", function () {
-
         var file = photoFile.files[0];
-
-        if (!file) {
-            return;
-        }
-
+        if (!file) { return; }
         var reader = new FileReader();
-
         reader.onload = function (e) {
-
             var img = new Image();
-
             img.onload = function () {
-
-                // Shrink the photo so it saves quickly
-                var maxSize = 400;
-                var scale = Math.min(1, maxSize / Math.max(img.width, img.height));
-
+                var scale = Math.min(1, 400 / Math.max(img.width, img.height));
                 var canvas = document.createElement("canvas");
                 canvas.width = Math.round(img.width * scale);
                 canvas.height = Math.round(img.height * scale);
-
                 canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
-
                 currentPhoto = canvas.toDataURL("image/jpeg", 0.8);
                 showPhoto(currentPhoto);
             };
-
             img.src = e.target.result;
         };
-
         reader.readAsDataURL(file);
     });
 
-
-    manageButton.onclick = function () {
-        window.location.href = "manage.html";
-    };
-
-
-    // ---------- EDIT MODE: load existing data ----------
-
+    // ---------- EDIT MODE ----------
     if (editId) {
-
         document.getElementById("pageTitle").textContent = "Edit Your Portfolio";
         saveButton.textContent = "Update Portfolio";
 
-        window.supabaseClient
-            .from("portfolios")
-            .select("*")
-            .eq("id", editId)
-            .single()
+        window.supabaseClient.from("portfolios").select("*").eq("id", editId).single()
             .then(function (res) {
-
                 if (res.error) {
                     saveStatus.className = "status error";
                     saveStatus.textContent = "Error: " + res.error.message;
                     return;
                 }
-
                 var d = res.data;
-
                 for (var fieldId in fields) {
                     var column = fields[fieldId];
                     var value = d[column];
-
-                    // older rows may have used "project"
-                    if (column === "projects" && !value) {
-                        value = d.project;
-                    }
-
+                    if (column === "projects" && !value) { value = d.project; }
+                    if (column === "work_description" && !value) { value = d.work_experience; }
                     document.getElementById(fieldId).value = value || "";
                 }
-
                 currentPhoto = d.profile_picture || "";
                 showPhoto(currentPhoto);
             });
     }
 
-
     // ---------- SAVE / UPDATE ----------
-
     form.addEventListener("submit", async function (event) {
-
         event.preventDefault();
 
         saveButton.disabled = true;
         saveButton.textContent = "Saving...";
         saveStatus.className = "status saving";
         saveStatus.textContent = "Saving your portfolio...";
-        viewButton.style.display = "none";
-        manageButton.style.display = "none";
+        showAfter(false);
 
         try {
-
             if (typeof window.supabaseClient === "undefined") {
                 throw new Error("Supabase is not connected. Check supabase.js.");
             }
 
             var portfolio = {};
-
             for (var fieldId in fields) {
-                portfolio[fields[fieldId]] =
-                    document.getElementById(fieldId).value.trim();
+                portfolio[fields[fieldId]] = document.getElementById(fieldId).value.trim();
             }
-
             portfolio.profile_picture = currentPhoto;
 
             var result;
-
             if (editId) {
-                result = await window.supabaseClient
-                    .from("portfolios")
-                    .update(portfolio)
-                    .eq("id", editId)
-                    .select();
+                result = await window.supabaseClient.from("portfolios")
+                    .update(portfolio).eq("id", editId).select();
             } else {
-                result = await window.supabaseClient
-                    .from("portfolios")
-                    .insert([portfolio])
-                    .select();
+                result = await window.supabaseClient.from("portfolios")
+                    .insert([portfolio]).select();
             }
 
-            if (result.error) {
-                throw result.error;
-            }
-
+            if (result.error) { throw result.error; }
             if (!result.data || result.data.length === 0) {
-                throw new Error(
-                    "Nothing was saved. Check your insert/update policy in Supabase."
-                );
+                throw new Error("Nothing was saved. Check your insert/update policy in Supabase.");
             }
-
-            console.log("Saved successfully:", result.data);
 
             var savedId = result.data[0].id;
 
+            try { localStorage.setItem("myPortfolioId", String(savedId)); } catch (e) {}
+
             saveButton.disabled = false;
             saveButton.textContent = editId ? "Updated ✓" : "Saved ✓";
-
             saveStatus.className = "status success";
-            saveStatus.textContent = editId
-                ? "Portfolio updated successfully!"
-                : "Portfolio saved successfully!";
+            saveStatus.textContent = editId ? "Portfolio updated successfully!" : "Portfolio saved successfully!";
 
-            viewButton.style.display = "block";
-            manageButton.style.display = "block";
-
-            viewButton.onclick = function () {
-                window.location.href =
-                    "portfolio.html?id=" + encodeURIComponent(savedId);
-            };
+            showAfter(true);
+            document.getElementById("viewButton").onclick = function () { go("portfolio.html", savedId); };
+            document.getElementById("templateButton").onclick = function () { go("template.html", savedId); };
 
         } catch (error) {
-
             console.error("SAVE ERROR:", error);
-
             saveButton.disabled = false;
             saveButton.textContent = editId ? "Update Portfolio" : "Save Portfolio";
-
             saveStatus.className = "status error";
             saveStatus.textContent = "Error: " + error.message;
         }
     });
-
 });
 </script>
-
 </body>
 </html>
