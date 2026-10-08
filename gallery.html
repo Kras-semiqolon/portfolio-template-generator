@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Portfolios</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+body { min-height: 100vh; background: linear-gradient(135deg, #dbeafe, #e0e7ff, #f3e8ff); }
+.topnav { display: flex; justify-content: center; gap: 4px; padding: 10px; background: linear-gradient(135deg, #4f46e5, #7c3aed); position: sticky; top: 0; z-index: 10; }
+.topnav a { padding: 8px 12px; border-radius: 20px; color: white; font-size: 14px; font-weight: bold; text-decoration: none; }
+.topnav a.active { background: rgba(255,255,255,0.25); }
+.page { padding: 20px; }
+header { max-width: 900px; margin: 0 auto 25px; padding: 26px 20px; text-align: center; color: white; border-radius: 18px; background: linear-gradient(135deg, #4f46e5, #7c3aed); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+header h1 { font-size: 26px; margin-bottom: 6px; }
+header p { font-size: 14px; opacity: 0.9; }
+main { max-width: 900px; margin: auto; }
+button { border: none; border-radius: 10px; padding: 12px 16px; font-size: 14px; font-weight: bold; cursor: pointer; }
+.create-btn { width: 100%; margin-bottom: 20px; color: white; background: linear-gradient(135deg, #4f46e5, #7c3aed); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 15px; }
+.card { padding: 22px 18px; text-align: center; border-radius: 16px; background: white; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+.card.mine { border: 3px solid #7c3aed; }
+.avatar { width: 90px; height: 90px; margin: 0 auto 12px; border-radius: 50%; object-fit: cover; background: #eef2ff; display: flex; align-items: center; justify-content: center; color: #4f46e5; font-size: 34px; font-weight: bold; }
+.card h2 { margin-bottom: 6px; color: #333; font-size: 18px; word-break: break-word; }
+.badge { display: inline-block; margin-bottom: 8px; padding: 4px 10px; border-radius: 20px; background: #7c3aed; color: white; font-size: 12px; font-weight: bold; }
+.template { display: inline-block; padding: 4px 12px; border-radius: 20px; background: #eef2ff; color: #4f46e5; font-size: 12px; font-weight: bold; text-transform: capitalize; }
+.view-btn { width: 100%; margin-top: 14px; color: white; background: #4f46e5; }
+.message { padding: 30px; text-align: center; color: #555; border-radius: 16px; background: white; }
+.error { padding: 15px; color: #b91c1c; border-radius: 12px; background: #fee2e2; }
+@media (max-width: 600px) { .page { padding: 12px; } }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+    <a href="create.html">Create</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="manage.html">Manage</a>
+    <a href="template.html">Template</a>
+</nav>
+
+<div class="page">
+
+<header>
+    <h1>All Portfolios</h1>
+    <p>Browse your portfolio and everyone else's.</p>
+</header>
+
+<main>
+    <button class="create-btn" id="createBtn">+ Create New Portfolio</button>
+    <div id="message" class="message">Loading portfolios...</div>
+    <div id="grid" class="grid"></div>
+</main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script>
+// @ts-nocheck
+
+var messageBox = document.getElementById("message");
+var grid = document.getElementById("grid");
+
+function escapeHTML(value) {
+    if (value === null || value === undefined) { return ""; }
+    return String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+}
+
+function getMyId() {
+    try { return localStorage.getItem("myPortfolioId"); } catch (e) { return null; }
+}
+
+async function loadAll() {
+    try {
+        if (typeof window.supabaseClient === "undefined") {
+            throw new Error("Supabase is not connected. Check supabase.js.");
+        }
+
+        var result = await window.supabaseClient
+            .from("portfolios").select("*")
+            .order("created_at", { ascending: false });
+
+        if (result.error) { throw result.error; }
+
+        var data = result.data;
+
+        if (!data || data.length === 0) {
+            messageBox.textContent = "No portfolios yet. Create the first one!";
+            return;
+        }
+
+        messageBox.style.display = "none";
+
+        var myId = getMyId();
+
+        data.sort(function (a, b) {
+            if (String(a.id) === myId) { return -1; }
+            if (String(b.id) === myId) { return 1; }
+            return 0;
+        });
+
+        data.forEach(function (p) {
+            var isMine = String(p.id) === myId;
+            var name = p.full_name || "Unnamed";
+
+            var card = document.createElement("div");
+            card.className = isMine ? "card mine" : "card";
+
+            var avatar = p.profile_picture
+                ? "<img class='avatar' src='" + escapeHTML(p.profile_picture) + "' alt=''>"
+                : "<div class='avatar'>" + escapeHTML(name.charAt(0).toUpperCase()) + "</div>";
+
+            card.innerHTML =
+                avatar +
+                (isMine ? "<div class='badge'>Your Portfolio</div><br>" : "") +
+                "<h2>" + escapeHTML(name) + "</h2>" +
+                "<span class='template'>" + escapeHTML(p.template || "modern") + "</span>" +
+                "<button class='view-btn' data-id='" + escapeHTML(p.id) + "'>View Portfolio</button>";
+
+            grid.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error("GALLERY ERROR:", error);
+        messageBox.className = "error";
+        messageBox.textContent = "Error: " + error.message;
+    }
+}
+
+grid.addEventListener("click", function (event) {
+    var button = event.target.closest("button[data-id]");
+    if (button) {
+        window.location.href = "portfolio.html?id=" + encodeURIComponent(button.getAttribute("data-id"));
+    }
+});
+
+document.getElementById("createBtn").onclick = function () { window.location.href = "create.html"; };
+
+loadAll();
+</script>
+</body>
+</html>
