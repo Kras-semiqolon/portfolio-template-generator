@@ -1,261 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Portfolio</title>
-
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    min-height: 100vh;
-    background: #f3f4f6;
-    color: #111827;
-}
-
-#loading {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #4f46e5;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-#error {
-    display: none;
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #fee2e2;
-    color: #b91c1c;
-    border-radius: 12px;
-    text-align: center;
-}
-
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+body { min-height: 100vh; background: #f3f4f6; color: #111827; }
+.topnav { display: flex; justify-content: center; gap: 4px; padding: 10px; background: linear-gradient(135deg, #4f46e5, #7c3aed); position: sticky; top: 0; z-index: 10; }
+.topnav a { padding: 8px 12px; border-radius: 20px; color: white; font-size: 14px; font-weight: bold; text-decoration: none; }
+#loading { min-height: 80vh; display: flex; align-items: center; justify-content: center; color: #4f46e5; font-size: 20px; font-weight: bold; }
+#error { display: none; max-width: 600px; margin: 40px auto; padding: 20px; background: #fee2e2; color: #b91c1c; border-radius: 12px; text-align: center; }
 #portfolio { display: none; }
 
-.back-link {
-    display: block;
-    width: fit-content;
-    margin: 15px auto;
-    padding: 10px 18px;
-    border-radius: 20px;
-    background: #4f46e5;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-/* MODERN */
-
-.modern {
-    min-height: 100vh;
-    padding: 25px 15px;
-    background: linear-gradient(135deg, #dbeafe, #f3e8ff);
-}
-
-.modern-container {
-    max-width: 900px;
-    margin: auto;
-    background: white;
-    border-radius: 22px;
-    overflow: hidden;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
-}
-
-.modern-header {
-    padding: 45px 20px;
-    text-align: center;
-    color: white;
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
-}
-
-.modern-header img {
-    width: 130px;
-    height: 130px;
-    display: none;
-    margin: 0 auto 20px;
-    border: 5px solid white;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.modern-header h1 {
-    margin-bottom: 10px;
-    font-size: 40px;
-}
-
+.modern { padding: 25px 15px; background: linear-gradient(135deg, #dbeafe, #f3e8ff); }
+.modern-container { max-width: 900px; margin: auto; background: white; border-radius: 22px; overflow: hidden; box-shadow: 0 10px 35px rgba(0,0,0,0.12); }
+.modern-header { padding: 45px 20px; text-align: center; color: white; background: linear-gradient(135deg, #4f46e5, #7c3aed); }
+.modern-header img { width: 130px; height: 130px; display: none; margin: 0 auto 20px; border: 5px solid white; border-radius: 50%; object-fit: cover; }
+.modern-header h1 { margin-bottom: 10px; font-size: 40px; }
 .modern-header p { font-size: 17px; }
-
-.modern-contact {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.modern-contact span {
-    padding: 8px 14px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.15);
-    font-size: 14px;
-}
-
+.modern-contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+.modern-contact span { padding: 8px 14px; border-radius: 20px; background: rgba(255,255,255,0.15); font-size: 14px; }
 .modern-content { padding: 35px; }
-
 .modern-section { margin-bottom: 35px; }
+.modern-section h2 { margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #e0e7ff; color: #4f46e5; font-size: 24px; }
+.modern-section p { color: #374151; line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
+.skills-container { display: flex; flex-wrap: wrap; gap: 10px; }
+.skill { padding: 9px 14px; border-radius: 20px; background: #eef2ff; color: #4338ca; font-size: 14px; font-weight: bold; }
 
-.modern-section h2 {
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #e0e7ff;
-    color: #4f46e5;
-    font-size: 24px;
-}
-
-.modern-section p {
-    color: #374151;
-    line-height: 1.7;
-    white-space: pre-wrap;
-}
-
-.skills-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.skill {
-    padding: 9px 14px;
-    border-radius: 20px;
-    background: #eef2ff;
-    color: #4338ca;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-/* CLASSIC */
-
-.classic {
-    min-height: 100vh;
-    padding: 40px 15px;
-    background: #f5f5f5;
-}
-
-.classic-container {
-    max-width: 850px;
-    margin: auto;
-    padding: 50px;
-    background: white;
-    border: 1px solid #d1d5db;
-}
-
-.classic-header {
-    margin-bottom: 30px;
-    padding-bottom: 25px;
-    text-align: center;
-    border-bottom: 3px solid #222;
-}
-
-.classic-header img {
-    width: 120px;
-    height: 120px;
-    display: none;
-    margin: 0 auto 20px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.classic-header h1 {
-    margin-bottom: 8px;
-    font-family: Georgia, serif;
-    font-size: 40px;
-}
-
+.classic { padding: 40px 15px; background: #f5f5f5; }
+.classic-container { max-width: 850px; margin: auto; padding: 50px; background: white; border: 1px solid #d1d5db; }
+.classic-header { margin-bottom: 30px; padding-bottom: 25px; text-align: center; border-bottom: 3px solid #222; }
+.classic-header img { width: 120px; height: 120px; display: none; margin: 0 auto 20px; border-radius: 50%; object-fit: cover; }
+.classic-header h1 { margin-bottom: 8px; font-family: Georgia, serif; font-size: 40px; }
 .classic-header p { color: #555; }
-
 .classic-section { margin-bottom: 30px; }
+.classic-section h2 { margin-bottom: 12px; padding-bottom: 7px; border-bottom: 1px solid #aaa; font-family: Georgia, serif; font-size: 22px; }
+.classic-section p { line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
 
-.classic-section h2 {
-    margin-bottom: 12px;
-    padding-bottom: 7px;
-    border-bottom: 1px solid #aaa;
-    font-family: Georgia, serif;
-    font-size: 22px;
-}
-
-.classic-section p {
-    line-height: 1.7;
-    white-space: pre-wrap;
-}
-
-/* MINIMAL */
-
-.minimal {
-    min-height: 100vh;
-    padding: 60px 20px;
-    background: white;
-}
-
-.minimal-container {
-    max-width: 750px;
-    margin: auto;
-}
-
+.minimal { padding: 60px 20px; background: white; }
+.minimal-container { max-width: 750px; margin: auto; }
 .minimal-header { margin-bottom: 55px; }
-
-.minimal-header img {
-    width: 100px;
-    height: 100px;
-    display: none;
-    margin-bottom: 20px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.minimal-header h1 {
-    margin-bottom: 10px;
-    font-size: 48px;
-}
-
-.minimal-header p {
-    color: #6b7280;
-    font-size: 18px;
-}
-
+.minimal-header img { width: 100px; height: 100px; display: none; margin-bottom: 20px; border-radius: 50%; object-fit: cover; }
+.minimal-header h1 { margin-bottom: 10px; font-size: 48px; }
+.minimal-header p { color: #6b7280; font-size: 18px; }
 .minimal-section { margin-bottom: 40px; }
+.minimal-section h2 { margin-bottom: 15px; color: #6b7280; font-size: 18px; letter-spacing: 2px; text-transform: uppercase; }
+.minimal-section p { font-size: 17px; line-height: 1.8; white-space: pre-wrap; word-break: break-word; }
 
-.minimal-section h2 {
-    margin-bottom: 15px;
-    color: #6b7280;
-    font-size: 18px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.minimal-section p {
-    font-size: 17px;
-    line-height: 1.8;
-    white-space: pre-wrap;
-}
-
-.footer {
-    margin-top: 30px;
-    color: #9ca3af;
-    font-size: 13px;
-    text-align: center;
-}
+.footer { margin-top: 30px; color: #9ca3af; font-size: 13px; text-align: center; }
 
 @media (max-width: 600px) {
     .modern-header h1 { font-size: 32px; }
@@ -267,164 +60,78 @@ body {
 }
 </style>
 </head>
-
 <body>
 
-<div id="loading">Loading portfolio...</div>
+<nav class="topnav">
+    <a href="create.html">Create</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="manage.html">Manage</a>
+    <a href="template.html" id="navTemplate">Template</a>
+</nav>
 
+<div id="loading">Loading portfolio...</div>
 <div id="error"></div>
 
 <div id="portfolio">
 
-<a class="back-link" href="manage.html">← Back to Manage</a>
-
 <!-- MODERN -->
-<div id="modernTemplate" class="modern" style="display: none;">
+<div id="modernTemplate" class="modern" style="display:none;">
 <div class="modern-container">
-
-<div class="modern-header">
-    <img id="modernImage" alt="Profile Picture">
-    <h1 id="modernName">Your Name</h1>
-    <p id="modernEmail"></p>
-    <div class="modern-contact">
-        <span id="modernContact"></span>
-        <span id="modernAddress"></span>
+    <div class="modern-header">
+        <img id="modernImage" alt="Profile Picture">
+        <h1 id="modernName"></h1>
+        <p id="modernEmail"></p>
+        <div class="modern-contact">
+            <span id="modernContact"></span>
+            <span id="modernAddress"></span>
+        </div>
     </div>
-</div>
-
-<div class="modern-content">
-
-    <div class="modern-section">
-        <h2>About Me</h2>
-        <p id="modernAbout"></p>
+    <div class="modern-content">
+        <div class="modern-section"><h2>About Me</h2><p id="modernAbout"></p></div>
+        <div class="modern-section"><h2>Education</h2><p id="modernEducation"></p></div>
+        <div class="modern-section"><h2>Skills</h2><div id="modernSkills" class="skills-container"></div></div>
+        <div class="modern-section"><h2>Projects</h2><p id="modernProjects"></p></div>
+        <div class="modern-section"><h2>Work Experience</h2><p id="modernWork"></p></div>
+        <div class="modern-section"><h2>Social Links</h2><p id="modernSocial"></p></div>
+        <div class="footer">Portfolio Generator</div>
     </div>
-
-    <div class="modern-section">
-        <h2>Education</h2>
-        <p id="modernEducation"></p>
-    </div>
-
-    <div class="modern-section">
-        <h2>Skills</h2>
-        <div id="modernSkills" class="skills-container"></div>
-    </div>
-
-    <div class="modern-section">
-        <h2>Projects</h2>
-        <p id="modernProjects"></p>
-    </div>
-
-    <div class="modern-section">
-        <h2>Work Experience</h2>
-        <p id="modernWork"></p>
-    </div>
-
-    <div class="modern-section">
-        <h2>Social Links</h2>
-        <p id="modernSocial"></p>
-    </div>
-
-    <div class="footer">Portfolio Generator</div>
-
-</div>
 </div>
 </div>
 
 <!-- CLASSIC -->
-<div id="classicTemplate" class="classic" style="display: none;">
+<div id="classicTemplate" class="classic" style="display:none;">
 <div class="classic-container">
-
-<div class="classic-header">
-    <img id="classicImage" alt="Profile Picture">
-    <h1 id="classicName">Your Name</h1>
-    <p id="classicEmail"></p>
-</div>
-
-<div class="classic-section">
-    <h2>Contact</h2>
-    <p id="classicContact"></p>
-    <p id="classicAddress"></p>
-</div>
-
-<div class="classic-section">
-    <h2>About Me</h2>
-    <p id="classicAbout"></p>
-</div>
-
-<div class="classic-section">
-    <h2>Education</h2>
-    <p id="classicEducation"></p>
-</div>
-
-<div class="classic-section">
-    <h2>Skills</h2>
-    <p id="classicSkills"></p>
-</div>
-
-<div class="classic-section">
-    <h2>Projects</h2>
-    <p id="classicProjects"></p>
-</div>
-
-<div class="classic-section">
-    <h2>Work Experience</h2>
-    <p id="classicWork"></p>
-</div>
-
-<div class="classic-section">
-    <h2>Social Links</h2>
-    <p id="classicSocial"></p>
-</div>
-
-<div class="footer">Portfolio Generator</div>
-
+    <div class="classic-header">
+        <img id="classicImage" alt="Profile Picture">
+        <h1 id="classicName"></h1>
+        <p id="classicEmail"></p>
+    </div>
+    <div class="classic-section"><h2>Contact</h2><p id="classicContact"></p><p id="classicAddress"></p></div>
+    <div class="classic-section"><h2>About Me</h2><p id="classicAbout"></p></div>
+    <div class="classic-section"><h2>Education</h2><p id="classicEducation"></p></div>
+    <div class="classic-section"><h2>Skills</h2><p id="classicSkills"></p></div>
+    <div class="classic-section"><h2>Projects</h2><p id="classicProjects"></p></div>
+    <div class="classic-section"><h2>Work Experience</h2><p id="classicWork"></p></div>
+    <div class="classic-section"><h2>Social Links</h2><p id="classicSocial"></p></div>
+    <div class="footer">Portfolio Generator</div>
 </div>
 </div>
 
 <!-- MINIMAL -->
-<div id="minimalTemplate" class="minimal" style="display: none;">
+<div id="minimalTemplate" class="minimal" style="display:none;">
 <div class="minimal-container">
-
-<div class="minimal-header">
-    <img id="minimalImage" alt="Profile Picture">
-    <h1 id="minimalName">Your Name</h1>
-    <p id="minimalEmail"></p>
-</div>
-
-<div class="minimal-section">
-    <h2>About</h2>
-    <p id="minimalAbout"></p>
-</div>
-
-<div class="minimal-section">
-    <h2>Education</h2>
-    <p id="minimalEducation"></p>
-</div>
-
-<div class="minimal-section">
-    <h2>Skills</h2>
-    <p id="minimalSkills"></p>
-</div>
-
-<div class="minimal-section">
-    <h2>Projects</h2>
-    <p id="minimalProjects"></p>
-</div>
-
-<div class="minimal-section">
-    <h2>Experience</h2>
-    <p id="minimalWork"></p>
-</div>
-
-<div class="minimal-section">
-    <h2>Contact</h2>
-    <p id="minimalContact"></p>
-    <p id="minimalAddress"></p>
-    <p id="minimalSocial"></p>
-</div>
-
-<div class="footer">Portfolio Generator</div>
-
+    <div class="minimal-header">
+        <img id="minimalImage" alt="Profile Picture">
+        <h1 id="minimalName"></h1>
+        <p id="minimalEmail"></p>
+    </div>
+    <div class="minimal-section"><h2>About</h2><p id="minimalAbout"></p></div>
+    <div class="minimal-section"><h2>Education</h2><p id="minimalEducation"></p></div>
+    <div class="minimal-section"><h2>Skills</h2><p id="minimalSkills"></p></div>
+    <div class="minimal-section"><h2>Projects</h2><p id="minimalProjects"></p></div>
+    <div class="minimal-section"><h2>Experience</h2><p id="minimalWork"></p></div>
+    <div class="minimal-section"><h2>Contact</h2><p id="minimalContact"></p><p id="minimalAddress"></p><p id="minimalSocial"></p></div>
+    <div class="footer">Portfolio Generator</div>
 </div>
 </div>
 
@@ -432,149 +139,123 @@ body {
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
-
 <script>
 // @ts-nocheck
 
 function setText(id, value) {
-    var element = document.getElementById(id);
-    if (element) {
-        element.textContent = value || "—";
-    }
+    var el = document.getElementById(id);
+    if (el) { el.textContent = value || "—"; }
 }
 
 function setImage(id, url) {
-    var image = document.getElementById(id);
-    if (!image) {
-        return;
-    }
-    if (url && url.trim() !== "") {
-        image.src = url;
-        image.style.display = "block";
+    var img = document.getElementById(id);
+    if (img && url && url.trim() !== "") {
+        img.src = url;
+        img.style.display = "block";
     }
 }
 
 function displaySkills(id, skills) {
-
-    var container = document.getElementById(id);
-
-    if (!container) {
-        return;
-    }
-
-    container.innerHTML = "";
-
-    if (!skills || skills.trim() === "") {
-        container.textContent = "—";
-        return;
-    }
-
-    skills
-        .split(/[,|\n]/)
+    var box = document.getElementById(id);
+    box.innerHTML = "";
+    if (!skills || skills.trim() === "") { box.textContent = "—"; return; }
+    skills.split(/[,|\n]/)
         .map(function (s) { return s.trim(); })
         .filter(function (s) { return s !== ""; })
         .forEach(function (skill) {
             var span = document.createElement("span");
             span.className = "skill";
             span.textContent = skill;
-            container.appendChild(span);
+            box.appendChild(span);
         });
 }
 
+function projectText(p) {
+    var t = p.projects || p.project || "";
+    if (p.project_link) { t += (t ? "\n" : "") + "Link: " + p.project_link; }
+    return t;
+}
+
+function workText(p) {
+    var head = [p.position, p.company].filter(Boolean).join(" — ");
+    return [head, p.work_description || p.work_experience].filter(Boolean).join("\n");
+}
+
+function socialText(p) {
+    var lines = [];
+    [["Website", "website"], ["Facebook", "facebook"], ["LinkedIn", "linkedin"], ["GitHub", "github"]]
+        .forEach(function (x) {
+            if (p[x[1]]) { lines.push(x[0] + ": " + p[x[1]]); }
+        });
+    if (lines.length === 0 && p.social_links) { return p.social_links; }
+    return lines.join("\n");
+}
 
 async function loadPortfolio() {
-
     try {
-
         if (typeof window.supabaseClient === "undefined") {
             throw new Error("Supabase is not connected. Check supabase.js.");
         }
 
-        // Open the portfolio from ?id=..., or the newest one if no id
         var id = new URLSearchParams(window.location.search).get("id");
 
-        var query = window.supabaseClient
-            .from("portfolios")
-            .select("*");
-
+        var query = window.supabaseClient.from("portfolios").select("*");
         if (id) {
             query = query.eq("id", id).limit(1);
         } else {
-            query = query
-                .order("created_at", { ascending: false })
-                .limit(1);
+            query = query.order("created_at", { ascending: false }).limit(1);
         }
 
         var result = await query;
-
-        if (result.error) {
-            throw result.error;
-        }
-
+        if (result.error) { throw result.error; }
         if (!result.data || result.data.length === 0) {
             throw new Error("No portfolio found. Create a portfolio first.");
         }
 
         var p = result.data[0];
 
-        var name = p.full_name || "Your Name";
-        var email = p.email || "";
-        var contact = p.contact_number || "";
-        var address = p.address || "";
-        var about = p.about_me || "";
-        var education = p.education || "";
-        var skills = p.skills || "";
-        var projects = p.projects || p.project || "";
-        var work = p.work_experience || "";
-        var social = p.social_links || "";
-        var template = p.template || "modern";
-        var photo = p.profile_picture || "";
+        document.getElementById("navTemplate").href =
+            "template.html?id=" + encodeURIComponent(p.id);
 
         var prefixes = ["modern", "classic", "minimal"];
 
         prefixes.forEach(function (x) {
-
-            setText(x + "Name", name);
-            setText(x + "Email", email);
-            setText(x + "Contact", contact);
-            setText(x + "Address", address);
-            setText(x + "About", about);
-            setText(x + "Education", education);
-            setText(x + "Projects", projects);
-            setText(x + "Work", work);
-            setText(x + "Social", social);
-            setImage(x + "Image", photo);
+            setText(x + "Name", p.full_name || "Your Name");
+            setText(x + "Email", p.email);
+            setText(x + "Contact", p.contact_number);
+            setText(x + "Address", p.address);
+            setText(x + "About", p.about_me);
+            setText(x + "Education", p.education);
+            setText(x + "Projects", projectText(p));
+            setText(x + "Work", workText(p));
+            setText(x + "Social", socialText(p));
+            setImage(x + "Image", p.profile_picture);
 
             if (x === "modern") {
-                displaySkills("modernSkills", skills);
+                displaySkills("modernSkills", p.skills);
             } else {
-                setText(x + "Skills", skills);
+                setText(x + "Skills", p.skills);
             }
 
             document.getElementById(x + "Template").style.display = "none";
         });
 
-        var chosen = prefixes.indexOf(template) !== -1 ? template : "modern";
-
+        var chosen = prefixes.indexOf(p.template) !== -1 ? p.template : "modern";
         document.getElementById(chosen + "Template").style.display = "block";
 
         document.getElementById("loading").style.display = "none";
         document.getElementById("portfolio").style.display = "block";
 
     } catch (error) {
-
         console.error("PORTFOLIO ERROR:", error);
-
         document.getElementById("loading").style.display = "none";
-
-        var errorBox = document.getElementById("error");
-        errorBox.style.display = "block";
-        errorBox.textContent = "Error: " + error.message;
+        var box = document.getElementById("error");
+        box.style.display = "block";
+        box.textContent = "Error: " + error.message;
     }
 }
 
 loadPortfolio();
 </script>
-
 </body>
 </html>
