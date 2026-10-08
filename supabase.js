@@ -2,9 +2,9 @@ const SUPABASE_URL =
     "https://gptdvdqmulmxabhgdniu.supabase.co";
 
 const SUPABASE_KEY =
-    "YOUR_ACTUAL_PUBLISHABLE_KEY";
+    "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
 
-const supabaseClient =
+const supabase =
     window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
