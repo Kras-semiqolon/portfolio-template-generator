@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>My Portfolio</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #f3f4f6;
+    color: #111827;
+}
+
+#loading {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4f46e5;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#error {
+    display: none;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fee2e2;
+    color: #b91c1c;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#portfolio {
+    display: none;
+}
+
+
+/* =========================
+   MODERN
+========================= */
+
+.modern {
+    min-height: 100vh;
+    padding: 25px 15px;
+    background: linear-gradient(135deg, #dbeafe, #f3e8ff);
+}
+
+.modern-container {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+}
+
+.modern-header {
+    padding: 45px 20px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+}
+
+.modern-header img {
+    width: 130px;
+    height: 130px;
+    display: none;
+    margin: 0 auto 20px;
+    border: 5px solid white;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.modern-header h1 {
+    margin-bottom: 10px;
+    font-size: 40px;
+}
+
+.modern-header p {
+    font-size: 17px;
+}
+
+.modern-contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modern-contact span {
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    font-size: 14px;
+}
+
+.modern-content {
+    padding: 35px;
+}
+
+.modern-section {
+    margin-bottom: 35px;
+}
+
+.modern-section h2 {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e0e7ff;
+    color: #4f46e5;
+    font-size: 24px;
+}
+
+.modern-section p {
+    color: #374151;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill {
+    padding: 9px 14px;
+    border-radius: 20px;
+    background: #eef2ff;
+    color: #4338ca;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   CLASSIC
+========================= */
+
+.classic {
+    min-height: 100vh;
+    padding: 40px 15px;
+    background: #f5f5f5;
+}
+
+.classic-container {
+    max-width: 850px;
+    margin: auto;
+    padding: 50px;
+    background: white;
+    border: 1px solid #d1d5db;
+}
+
+.classic-header {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    text-align: center;
+    border-bottom: 3px solid #222;
+}
+
+.classic-header img {
+    width: 120px;
+    height: 120px;
+    display: none;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.classic-header h1 {
+    margin-bottom: 8px;
+    font-family: Georgia, serif;
+    font-size: 40px;
+}
+
+.classic-header p {
+    color: #555;
+}
+
+.classic-section {
+    margin-bottom: 30px;
+}
+
+.classic-section h2 {
+    margin-bottom: 12px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #aaa;
+    font-family: Georgia, serif;
+    font-size: 22px;
+}
+
+.classic-section p {
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+
+/* =========================
+   MINIMAL
+========================= */
+
+.minimal {
+    min-height: 100vh;
+    padding: 60px 20px;
+    background: white;
+}
+
+.minimal-container {
+    max-width: 750px;
+    margin: auto;
+}
+
+.minimal-header {
+    margin-bottom: 55px;
+}
+
+.minimal-header img {
+    width: 100px;
+    height: 100px;
+    display: none;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.minimal-header h1 {
+    margin-bottom: 10px;
+    font-size: 48px;
+}
+
+.minimal-header p {
+    color: #6b7280;
+    font-size: 18px;
+}
+
+.minimal-section {
+    margin-bottom: 40px;
+}
+
+.minimal-section h2 {
+    margin-bottom: 15px;
+    color: #6b7280;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.minimal-section p {
+    font-size: 17px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    margin-top: 30px;
+    color: #9ca3af;
+    font-size: 13px;
+    text-align: center;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .modern-header h1 {
+        font-size: 32px;
+    }
+
+    .modern-content {
+        padding: 25px 20px;
+    }
+
+    .classic-container {
+        padding: 25px 20px;
+    }
+
+    .classic-header h1 {
+        font-size: 32px;
+    }
+
+    .minimal {
+        padding: 45px 20px;
+    }
+
+    .minimal-header h1 {
+        font-size: 36px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div id="loading">
+    Loading portfolio...
+</div>
+
+
+<div id="error"></div>
+
+
+<div id="portfolio">
+
+
+<!-- =========================
+     MODERN TEMPLATE
+========================= -->
+
+<div
+    id="modernTemplate"
+    class="modern"
+    style="display: none;"
+>
+
+<div class="modern-container">
+
+<div class="modern-header">
+
+<img
+    id="modernImage"
+    alt="Profile Picture"
+>
+
+<h1 id="modernName">
+    Your Name
+</h1>
+
+<p id="modernEmail">
+    email@example.com
+</p>
+
+<div class="modern-contact">
+
+<span id="modernContact"></span>
+
+<span id="modernAddress"></span>
+
+</div>
+
+</div>
+
+
+<div class="modern-content">
+
+
+<div class="modern-section">
+
+<h2>About Me</h2>
+
+<p id="modernAbout"></p>
+
+</div>
+
+
+<div class="modern-section">
+
+<h2>Education</h2>
+
+<p id="modernEducation"></p>
+
+</div>
+
+
+<div class="modern-section">
+
+<h2>Skills</h2>
+
+<div
+    id="modernSkills"
+    class="skills-container"
+></div>
+
+</div>
+
+
+<div class="modern-section">
+
+<h2>Projects</h2>
+
+<p id="modernProjects"></p>
+
+</div>
+
+
+<div class="modern-section">
+
+<h2>Work Experience</h2>
+
+<p id="modernWork"></p>
+
+</div>
+
+
+<div class="modern-section">
+
+<h2>Social Links</h2>
+
+<p id="modernSocial"></p>
+
+</div>
+
+
+<div class="footer">
+    Portfolio Generator
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     CLASSIC TEMPLATE
+========================= -->
+
+<div
+    id="classicTemplate"
+    class="classic"
+    style="display: none;"
+>
+
+<div class="classic-container">
+
+<div class="classic-header">
+
+<img
+    id="classicImage"
+    alt="Profile Picture"
+>
+
+<h1 id="classicName">
+    Your Name
+</h1>
+
+<p id="classicEmail">
+    email@example.com
+</p>
+
+</div>
+
+
+<div class="classic-section">
+
+<h2>Contact</h2>
+
+<p id="classicContact"></p>
+
+<p id="classicAddress"></p>
+
+</div>
+
+
+<div class="classic-section">
+
+<h2>About Me</h2>
+
+<p id="classicAbout"></p>
+
+</div>
+
+
+<div class="classic-section">
+
+<h2>Education</h2>
+
+<p id="classicEducation"></p>
+
+</div>
+
+
+<div class="classic-section">
+
+<h2>Skills</h2>
+
+<p id="classicSkills"></p>
+
+</div>
+
+
+<div class="classic-section">
+
+<h2>Projects</h2>
+
+<p id="classicProjects"></p>
+
+</div>
+
+
+<div class="classic-section">
+
+<h2>Work Experience</h2>
+
+<p id="classicWork"></p>
+
+</div>
+
+
+<div class="classic-section">
+
+<h2>Social Links</h2>
+
+<p id="classicSocial"></p>
+
+</div>
+
+
+<div class="footer">
+    Portfolio Generator
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     MINIMAL TEMPLATE
+========================= -->
+
+<div
+    id="minimalTemplate"
+    class="minimal"
+    style="display: none;"
+>
+
+<div class="minimal-container">
+
+
+<div class="minimal-header">
+
+<img
+    id="minimalImage"
+    alt="Profile Picture"
+>
+
+<h1 id="minimalName">
+    Your Name
+</h1>
+
+<p id="minimalEmail">
+    email@example.com
+</p>
+
+</div>
+
+
+<div class="minimal-section">
+
+<h2>About</h2>
+
+<p id="minimalAbout"></p>
+
+</div>
+
+
+<div class="minimal-section">
+
+<h2>Education</h2>
+
+<p id="minimalEducation"></p>
+
+</div>
+
+
+<div class="minimal-section">
+
+<h2>Skills</h2>
+
+<p id="minimalSkills"></p>
+
+</div>
+
+
+<div class="minimal-section">
+
+<h2>Projects</h2>
+
+<p id="minimalProjects"></p>
+
+</div>
+
+
+<div class="minimal-section">
+
+<h2>Experience</h2>
+
+<p id="minimalWork"></p>
+
+</div>
+
+
+<div class="minimal-section">
+
+<h2>Contact</h2>
+
+<p id="minimalContact"></p>
+
+<p id="minimalAddress"></p>
+
+<p id="minimalSocial"></p>
+
+</div>
+
+
+<div class="footer">
+    Portfolio Generator
+</div>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+
+<script>
+
+// @ts-nocheck
+
+
+function setText(id, value) {
+
+    const element = document.getElementById(id);
+
+    if (element) {
+        element.textContent = value || "—";
+    }
+
+}
+
+
+function setImage(id, url) {
+
+    const image = document.getElementById(id);
+
+    if (!image) {
+        return;
+    }
+
+    if (url && url.trim() !== "") {
+
+        image.src = url;
+        image.style.display = "block";
+
+    }
+
+}
+
+
+function displaySkills(id, skills) {
+
+    const container = document.getElementById(id);
+
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = "";
+
+    if (!skills || skills.trim() === "") {
+
+        container.textContent = "—";
+
+        return;
+
+    }
+
+    const skillList = skills
+        .split(/[,|\n]/)
+        .map(function(skill) {
+            return skill.trim();
+        })
+        .filter(function(skill) {
+            return skill !== "";
+        });
+
+
+    skillList.forEach(function(skill) {
+
+        const span = document.createElement("span");
+
+        span.className = "skill";
+
+        span.textContent = skill;
+
+        container.appendChild(span);
+
+    });
+
+}
+
+
+async function loadPortfolio() {
+
+    try {
+
+        if (
+            typeof window.supabaseClient ===
+            "undefined"
+        ) {
+
+            throw new Error(
+                "Supabase is not connected. Check supabase.js."
+            );
+
+        }
+
+
+        const result =
+            await window.supabaseClient
+                .from("portfolios")
+                .select("*")
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
+                )
+                .limit(1);
+
+
+        if (result.error) {
+
+            throw result.error;
+
+        }
+
+
+        if (
+            !result.data ||
+            result.data.length === 0
+        ) {
+
+            throw new Error(
+                "No portfolio found. Create a portfolio first."
+            );
+
+        }
+
+
+        const portfolio = result.data[0];
+
+
+        console.log(
+            "Portfolio loaded:",
+            portfolio
+        );
+
+
+        const name =
+            portfolio.full_name || "Your Name";
+
+        const email =
+            portfolio.email || "";
+
+        const contact =
+            portfolio.contact_number || "";
+
+        const address =
+            portfolio.address || "";
+
+        const about =
+            portfolio.about_me || "";
+
+        const education =
+            portfolio.education || "";
+
+        const skills =
+            portfolio.skills || "";
+
+        const projects =
+            portfolio.project ||
+            portfolio.projects ||
+            "";
+
+        const work =
+            portfolio.work_experience || "";
+
+        const social =
+            portfolio.social_links || "";
+
+        const template =
+            portfolio.template || "modern";
+
+        const profilePicture =
+            portfolio.profile_picture || "";
+
+
+        /* MODERN */
+
+        setText("modernName", name);
+        setText("modernEmail", email);
+        setText("modernContact", contact);
+        setText("modernAddress", address);
+        setText("modernAbout", about);
+        setText("modernEducation", education);
+        setText("modernProjects", projects);
+        setText("modernWork", work);
+        setText("modernSocial", social);
+
+        displaySkills(
+            "modernSkills",
+            skills
+        );
+
+        setImage(
+            "modernImage",
+            profilePicture
+        );
+
+
+        /* CLASSIC */
+
+        setText("classicName", name);
+        setText("classicEmail", email);
+        setText("classicContact", contact);
+        setText("classicAddress", address);
+        setText("classicAbout", about);
+        setText("classicEducation", education);
+        setText("classicSkills", skills);
+        setText("classicProjects", projects);
+        setText("classicWork", work);
+        setText("classicSocial", social);
+
+        setImage(
+            "classicImage",
+            profilePicture
+        );
+
+
+        /* MINIMAL */
+
+        setText("minimalName", name);
+        setText("minimalEmail", email);
+        setText("minimalContact", contact);
+        setText("minimalAddress", address);
+        setText("minimalAbout", about);
+        setText("minimalEducation", education);
+        setText("minimalSkills", skills);
+        setText("minimalProjects", projects);
+        setText("minimalWork", work);
+        setText("minimalSocial", social);
+
+        setImage(
+            "minimalImage",
+            profilePicture
+        );
+
+
+        /* HIDE ALL */
+
+        document.getElementById(
+            "modernTemplate"
+        ).style.display = "none";
+
+        document.getElementById(
+            "classicTemplate"
+        ).style.display = "none";
+
+        document.getElementById(
+            "minimalTemplate"
+        ).style.display = "none";
+
+
+        /* SELECT TEMPLATE */
+
+        if (template === "classic") {
+
+            document.getElementById(
+                "classicTemplate"
+            ).style.display = "block";
+
+        }
+        else if (template === "minimal") {
+
+            document.getElementById(
+                "minimalTemplate"
+            ).style.display = "block";
+
+        }
+        else {
+
+            document.getElementById(
+                "modernTemplate"
+            ).style.display = "block";
+
+        }
+
+
+        /* SHOW */
+
+        document.getElementById(
+            "loading"
+        ).style.display = "none";
+
+        document.getElementById(
+            "portfolio"
+        ).style.display = "block";
+
+
+    }
+    catch (error) {
+
+        console.error(
+            "PORTFOLIO ERROR:",
+            error
+        );
+
+
+        document.getElementById(
+            "loading"
+        ).style.display = "none";
+
+
+        const errorBox =
+            document.getElementById("error");
+
+
+        errorBox.style.display = "block";
+
+
+        errorBox.textContent =
+            "Error: " + error.message;
+
+    }
+
+}
+
+
+loadPortfolio();
+
+</script>
+
+
+</body>
+
+</html>
