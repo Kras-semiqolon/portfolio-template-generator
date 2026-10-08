@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Change Template</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+body { min-height: 100vh; background: linear-gradient(135deg, #dbeafe, #e0e7ff, #f3e8ff); }
+.topnav { display: flex; justify-content: center; gap: 4px; padding: 10px; background: linear-gradient(135deg, #4f46e5, #7c3aed); position: sticky; top: 0; z-index: 10; }
+.topnav a { padding: 8px 12px; border-radius: 20px; color: white; font-size: 14px; font-weight: bold; text-decoration: none; }
+.topnav a.active { background: rgba(255,255,255,0.25); }
+main { max-width: 600px; margin: auto; padding: 25px 20px; }
+h1 { color: #4f46e5; margin-bottom: 6px; font-size: 28px; }
+p.sub { color: #555; margin-bottom: 20px; }
+.opt { padding: 20px; margin-bottom: 14px; border: 3px solid transparent; border-radius: 16px; background: white; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+.opt.selected { border-color: #7c3aed; }
+.opt h2 { margin-bottom: 4px; }
+.opt span { color: #666; font-size: 14px; }
+button { width: 100%; margin-top: 8px; padding: 16px; border: none; border-radius: 12px; color: white; font-size: 17px; font-weight: bold; background: linear-gradient(135deg, #4f46e5, #7c3aed); cursor: pointer; }
+.status { margin-top: 14px; text-align: center; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+    <a href="create.html">Create</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="manage.html">Manage</a>
+    <a href="template.html" class="active">Template</a>
+</nav>
+
+<main>
+    <h1>Choose your portfolio style</h1>
+    <p class="sub">Your saved information will not be changed.</p>
+
+    <div class="opt" data-t="modern"><h2>Modern</h2><span>Bold gradient header with skill tags.</span></div>
+    <div class="opt" data-t="classic"><h2>Classic</h2><span>Traditional résumé look with serif headings.</span></div>
+    <div class="opt" data-t="minimal"><h2>Minimal</h2><span>Clean, simple and text focused.</span></div>
+
+    <button id="saveBtn">Save Template</button>
+    <div id="status" class="status"></div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script>
+// @ts-nocheck
+
+var id = new URLSearchParams(window.location.search).get("id");
+
+if (!id) {
+    try { id = localStorage.getItem("myPortfolioId"); } catch (e) {}
+}
+
+var chosen = "modern";
+var statusBox = document.getElementById("status");
+var opts = document.querySelectorAll(".opt");
+
+function mark() {
+    opts.forEach(function (o) {
+        o.classList.toggle("selected", o.dataset.t === chosen);
+    });
+}
+
+opts.forEach(function (o) {
+    o.onclick = function () { chosen = o.dataset.t; mark(); };
+});
+
+(async function () {
+    if (!id) {
+        statusBox.textContent = "No portfolio selected. Open this from Manage.";
+        return;
+    }
+    var r = await window.supabaseClient
+        .from("portfolios").select("template").eq("id", id).single();
+    if (r.data && r.data.template) { chosen = r.data.template; }
+    mark();
+})();
+
+document.getElementById("saveBtn").onclick = async function () {
+    if (!id) { return; }
+
+    var r = await window.supabaseClient
+        .from("portfolios").update({ template: chosen }).eq("id", id).select();
+
+    if (r.error || !r.data || r.data.length === 0) {
+        statusBox.style.color = "#dc2626";
+        statusBox.textContent = "Could not save. Check your update policy.";
+        return;
+    }
+
+    window.location.href = "portfolio.html?id=" + encodeURIComponent(id);
+};
+</script>
+</body>
+</html>
