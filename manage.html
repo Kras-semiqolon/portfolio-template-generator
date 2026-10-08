@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Portfolio</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(
+                135deg,
+                #dbeafe,
+                #e0e7ff,
+                #f3e8ff
+            );
+
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #7c3aed
+            );
+
+            color: white;
+            text-align: center;
+            padding: 28px 20px;
+
+            border-radius: 18px;
+
+            max-width: 800px;
+            margin: 0 auto 25px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.15);
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        main {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .portfolio-card {
+            background: white;
+            padding: 25px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            color: #4f46e5;
+            font-size: 19px;
+            font-weight: bold;
+
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+
+            border-bottom:
+                2px solid #e0e7ff;
+        }
+
+        .info {
+            margin-bottom: 10px;
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        .info strong {
+            color: #111827;
+        }
+
+        .content {
+            color: #374151;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+
+        #loading {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+
+            text-align: center;
+
+            color: #4f46e5;
+            font-weight: bold;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        #error {
+            background: #fee2e2;
+            color: #b91c1c;
+
+            padding: 18px;
+            border-radius: 12px;
+
+            display: none;
+
+            line-height: 1.5;
+        }
+
+        #noPortfolio {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+
+            text-align: center;
+
+            display: none;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+
+            margin-top: 30px;
+
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+
+            padding: 13px 20px;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .create-btn {
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #7c3aed
+            );
+
+            color: white;
+        }
+
+        .refresh-btn {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 12px;
+            }
+
+            header {
+                padding: 22px 15px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            .portfolio-card {
+                padding: 20px;
+            }
+
+            .actions button {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>Manage Portfolio</h1>
+
+    <p>
+        View your saved portfolio information
+    </p>
+
+</header>
+
+
+<main>
+
+
+    <!-- LOADING -->
+
+    <div id="loading">
+
+        Loading portfolio...
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div id="error"></div>
+
+
+    <!-- NO PORTFOLIO -->
+
+    <div id="noPortfolio">
+
+        <h2>No Portfolio Found</h2>
+
+        <p style="margin-top: 10px;">
+            You haven't saved a portfolio yet.
+        </p>
+
+        <button
+            class="create-btn"
+            style="margin-top: 20px;"
+            onclick="goToCreate()"
+        >
+            Create Portfolio
+        </button>
+
+    </div>
+
+
+    <!-- PORTFOLIO -->
+
+    <div
+        id="portfolioCard"
+        class="portfolio-card"
+        style="display: none;"
+    >
+
+
+        <!-- PERSONAL INFORMATION -->
+
+        <div class="section">
+
+            <div class="section-title">
+                Personal Information
+            </div>
+
+
+            <div class="info">
+
+                <strong>
+                    Full Name:
+                </strong>
+
+                <span id="fullName">
+                    —
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <strong>
+                    Email:
+                </strong>
+
+                <span id="email">
+                    —
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <strong>
+                    Contact Number:
+                </strong>
+
+                <span id="contactNumber">
+                    —
+                </span>
+
+            </div>
+
+
+            <div class="info">
+
+                <strong>
+                    Address:
+                </strong>
+
+                <span id="address">
+                    —
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ABOUT ME -->
+
+        <div class="section">
+
+            <div class="section-title">
+                About Me
+            </div>
+
+            <div
+                id="aboutMe"
+                class="content"
+            >
+                —
+            </div>
+
+        </div>
+
+
+        <!-- EDUCATION -->
+
+        <div class="section">
+
+            <div class="section-title">
+                Education
+            </div>
+
+            <div
+                id="education"
+                class="content"
+            >
+                —
+            </div>
+
+        </div>
+
+
+        <!-- SKILLS -->
+
+        <div class="section">
+
+            <div class="section-title">
+                Skills
+            </div>
+
+            <div
+                id="skills"
+                class="content"
+            >
+                —
+            </div>
+
+        </div>
+
+
+        <!-- PROJECTS -->
+
+        <div class="section">
+
+            <div class="section-title">
+                Projects
+            </div>
+
+            <div
+                id="project"
+                class="content"
+            >
+                —
+            </div>
+
+        </div>
+
+
+        <!-- WORK EXPERIENCE -->
+
+        <div class="section">
+
+            <div class="section-title">
+                Work Experience
+            </div>
+
+            <div
+                id="workExperience"
+                class="content"
+            >
+                —
+            </div>
+
+        </div>
+
+
+        <!-- SOCIAL LINKS -->
+
+        <div class="section">
+
+            <div class="section-title">
+                Social Links
+            </div>
+
+            <div
+                id="socialLinks"
+                class="content"
+            >
+                —
+            </div>
+
+        </div>
+
+
+        <!-- TEMPLATE -->
+
+        <div class="section">
+
+            <div class="section-title">
+                Portfolio Template
+            </div>
+
+            <div
+                id="template"
+                class="content"
+            >
+                —
+            </div>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="actions">
+
+            <button
+                class="create-btn"
+                onclick="goToCreate()"
+            >
+                Create Another
+            </button>
+
+
+            <button
+                class="refresh-btn"
+                onclick="loadPortfolio()"
+            >
+                Refresh
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+<!-- SUPABASE LIBRARY -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- YOUR EXISTING SUPABASE CONNECTION -->
+
+<script src="supabase.js"></script>
+
+
+<script>
+
+
+async function loadPortfolio() {
+
+    const loading =
+        document.getElementById(
+            "loading"
+        );
+
+    const errorBox =
+        document.getElementById(
+            "error"
+        );
+
+    const noPortfolio =
+        document.getElementById(
+            "noPortfolio"
+        );
+
+    const portfolioCard =
+        document.getElementById(
+            "portfolioCard"
+        );
+
+
+    /*
+        Reset screen
+    */
+
+    loading.style.display =
+        "block";
+
+    errorBox.style.display =
+        "none";
+
+    noPortfolio.style.display =
+        "none";
+
+    portfolioCard.style.display =
+        "none";
+
+
+    try {
+
+
+        /*
+            Check Supabase connection
+        */
+
+        if (
+            typeof window.supabaseClient ===
+            "undefined"
+        ) {
+
+            throw new Error(
+                "Supabase is not connected. Check supabase.js."
+            );
+
+        }
+
+
+        /*
+            Get latest portfolio
+        */
+
+        const {
+            data,
+            error
+        } = await window.supabaseClient
+
+            .from("portfolios")
+
+            .select("*")
+
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            )
+
+            .limit(1);
+
+
+        /*
+            Supabase error
+        */
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        /*
+            No portfolio
+        */
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            loading.style.display =
+                "none";
+
+            noPortfolio.style.display =
+                "block";
+
+            return;
+
+        }
+
+
+        /*
+            Get portfolio
+        */
+
+        const portfolio =
+            data[0];
+
+
+        /*
+            Display information
+        */
+
+        document.getElementById(
+            "fullName"
+        ).textContent =
+            portfolio.full_name ||
+            "—";
+
+
+        document.getElementById(
+            "email"
+        ).textContent =
+            portfolio.email ||
+            "—";
+
+
+        document.getElementById(
+            "contactNumber"
+        ).textContent =
+            portfolio.contact_number ||
+            "—";
+
+
+        document.getElementById(
+            "address"
+        ).textContent =
+            portfolio.address ||
+            "—";
+
+
+        document.getElementById(
+            "aboutMe"
+        ).textContent =
+            portfolio.about_me ||
+            "—";
+
+
+        document.getElementById(
+            "education"
+        ).textContent =
+            portfolio.education ||
+            "—";
+
+
+        document.getElementById(
+            "skills"
+        ).textContent =
+            portfolio.skills ||
+            "—";
+
+
+        document.getElementById(
+            "project"
+        ).textContent =
+            portfolio.project ||
+            "—";
+
+
+        document.getElementById(
+            "workExperience"
+        ).textContent =
+            portfolio.work_experience ||
+            "—";
+
+
+        document.getElementById(
+            "socialLinks"
+        ).textContent =
+            portfolio.social_links ||
+            "—";
+
+
+        document.getElementById(
+            "template"
+        ).textContent =
+            portfolio.template ||
+            "—";
+
+
+        /*
+            Show portfolio
+        */
+
+        loading.style.display =
+            "none";
+
+        portfolioCard.style.display =
+            "block";
+
+
+        /*
+            Console for debugging
+        */
+
+        console.log(
+            "Portfolio loaded:",
+            portfolio
+        );
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "LOAD ERROR:",
+            error
+        );
+
+
+        loading.style.display =
+            "none";
+
+
+        errorBox.style.display =
+            "block";
+
+
+        errorBox.textContent =
+            "Error loading portfolio: " +
+            error.message;
+
+    }
+
+}
+
+
+/*
+    Go back to create page
+*/
+
+function goToCreate() {
+
+    window.location.href =
+        "create.html";
+
+}
+
+
+/*
+    Load portfolio when page opens
+*/
+
+loadPortfolio();
+
+
+</script>
+
+
+</body>
+
+</html>
