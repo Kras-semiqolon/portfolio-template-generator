@@ -467,15 +467,15 @@ document.addEventListener(
                 try {
 
                     if (
-                        typeof supabase ===
-                        "undefined"
-                    ) {
+    typeof supabaseClient ===
+    "undefined"
+) {
 
-                        throw new Error(
-                            "Supabase is not connected. Check supabase.js."
-                        );
+    throw new Error(
+        "Supabase is not connected. Check supabase.js."
+    );
 
-                    }
+}
 
 
                     const portfolio = {
@@ -559,10 +559,10 @@ document.addEventListener(
                     );
 
 
-                    const {
+                   const {
                         data,
                         error
-                    } = await supabase
+                    } = await supabaseClient
                         .from("portfolios")
                         .insert([
                             portfolio
