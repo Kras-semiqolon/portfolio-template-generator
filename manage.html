@@ -118,17 +118,20 @@ button:disabled {
 
 .actions {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     margin-top: 15px;
 }
 
 .actions button {
     flex: 1;
+    min-width: 90px;
     color: white;
 }
 
 .view-btn { background: #4f46e5; }
 .edit-btn { background: #3498db; }
+.template-btn { background: #7c3aed; }
 .delete-btn { background: #e74c3c; }
 
 .message {
@@ -253,6 +256,7 @@ async function loadPortfolios() {
                 "<div class='actions'>" +
                     "<button class='view-btn' data-action='view' data-id='" + escapeHTML(p.id) + "'>View</button>" +
                     "<button class='edit-btn' data-action='edit' data-id='" + escapeHTML(p.id) + "'>Edit</button>" +
+                    "<button class='template-btn' data-action='template' data-id='" + escapeHTML(p.id) + "'>Template</button>" +
                     "<button class='delete-btn' data-action='delete' data-id='" + escapeHTML(p.id) + "'>Delete</button>" +
                 "</div>";
 
@@ -269,7 +273,7 @@ async function loadPortfolios() {
 
 async function deletePortfolio(id, button) {
 
-    if (!confirm("Are you sure you want to delete this portfolio?")) {
+    if (!confirm("Delete this portfolio? This cannot be undone.")) {
         return;
     }
 
@@ -307,7 +311,7 @@ async function deletePortfolio(id, button) {
 }
 
 
-// One listener handles every View / Edit / Delete button
+// One listener handles every View / Edit / Template / Delete button
 listBox.addEventListener("click", function (event) {
 
     var button = event.target.closest("button[data-action]");
@@ -324,6 +328,9 @@ listBox.addEventListener("click", function (event) {
     }
     else if (action === "edit") {
         window.location.href = "create.html?id=" + encodeURIComponent(id);
+    }
+    else if (action === "template") {
+        window.location.href = "template.html?id=" + encodeURIComponent(id);
     }
     else if (action === "delete") {
         deletePortfolio(id, button);
