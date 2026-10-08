@@ -2,813 +2,344 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Portfolios</title>
 
-    <title>Manage Portfolio</title>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+body {
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(135deg, #dbeafe, #e0e7ff, #f3e8ff);
+    color: #222;
+}
 
-        body {
-            min-height: 100vh;
-            background: linear-gradient(
-                135deg,
-                #dbeafe,
-                #e0e7ff,
-                #f3e8ff
-            );
+header {
+    max-width: 800px;
+    margin: 0 auto 25px;
+    padding: 28px 20px;
+    text-align: center;
+    color: white;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
 
-            padding: 20px;
-        }
+header h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
 
-        header {
-            background: linear-gradient(
-                135deg,
-                #4f46e5,
-                #7c3aed
-            );
+header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
 
-            color: white;
-            text-align: center;
-            padding: 28px 20px;
+main {
+    max-width: 800px;
+    margin: auto;
+}
 
-            border-radius: 18px;
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-            max-width: 800px;
-            margin: 0 auto 25px;
+button:active {
+    transform: scale(0.98);
+}
 
-            box-shadow:
-                0 8px 25px
-                rgba(0, 0, 0, 0.15);
-        }
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
 
-        header h1 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
+.top-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
 
-        header p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
+.create-btn {
+    flex: 1;
+    color: white;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+}
 
-        main {
-            width: 100%;
-            max-width: 800px;
-            margin: auto;
-        }
+.refresh-btn {
+    color: #111827;
+    background: #e5e7eb;
+}
 
-        .portfolio-card {
-            background: white;
-            padding: 25px;
+.card {
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
 
-            border-radius: 18px;
+.card h2 {
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 20px;
+    word-break: break-word;
+}
 
-            box-shadow:
-                0 8px 25px
-                rgba(0, 0, 0, 0.08);
-        }
+.card p {
+    margin: 6px 0;
+    color: #555;
+    font-size: 14px;
+    word-break: break-word;
+}
 
-        .section {
-            margin-bottom: 25px;
-        }
+.template {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: #eef2ff;
+    color: #4f46e5;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
 
-        .section:last-child {
-            margin-bottom: 0;
-        }
+.actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+}
 
-        .section-title {
-            color: #4f46e5;
-            font-size: 19px;
-            font-weight: bold;
+.actions button {
+    flex: 1;
+    color: white;
+}
 
-            padding-bottom: 10px;
-            margin-bottom: 12px;
+.view-btn { background: #4f46e5; }
+.edit-btn { background: #3498db; }
+.delete-btn { background: #e74c3c; }
 
-            border-bottom:
-                2px solid #e0e7ff;
-        }
+.message {
+    padding: 30px;
+    text-align: center;
+    color: #555;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
 
-        .info {
-            margin-bottom: 10px;
-            color: #374151;
-            line-height: 1.6;
-        }
+.error {
+    margin-bottom: 15px;
+    padding: 15px;
+    color: #b91c1c;
+    border-radius: 12px;
+    background: #fee2e2;
+    line-height: 1.5;
+}
 
-        .info strong {
-            color: #111827;
-        }
-
-        .content {
-            color: #374151;
-            line-height: 1.7;
-            white-space: pre-wrap;
-        }
-
-        #loading {
-            background: white;
-            padding: 30px;
-            border-radius: 18px;
-
-            text-align: center;
-
-            color: #4f46e5;
-            font-weight: bold;
-
-            box-shadow:
-                0 8px 25px
-                rgba(0, 0, 0, 0.08);
-        }
-
-        #error {
-            background: #fee2e2;
-            color: #b91c1c;
-
-            padding: 18px;
-            border-radius: 12px;
-
-            display: none;
-
-            line-height: 1.5;
-        }
-
-        #noPortfolio {
-            background: white;
-            padding: 30px;
-            border-radius: 18px;
-
-            text-align: center;
-
-            display: none;
-
-            box-shadow:
-                0 8px 25px
-                rgba(0, 0, 0, 0.08);
-        }
-
-        .actions {
-            display: flex;
-            gap: 10px;
-
-            margin-top: 30px;
-
-            flex-wrap: wrap;
-        }
-
-        button {
-            border: none;
-            border-radius: 10px;
-
-            padding: 13px 20px;
-
-            font-size: 15px;
-            font-weight: bold;
-
-            cursor: pointer;
-        }
-
-        .create-btn {
-            background: linear-gradient(
-                135deg,
-                #4f46e5,
-                #7c3aed
-            );
-
-            color: white;
-        }
-
-        .refresh-btn {
-            background: #e5e7eb;
-            color: #111827;
-        }
-
-        button:active {
-            transform: scale(0.98);
-        }
-
-        @media (max-width: 600px) {
-
-            body {
-                padding: 12px;
-            }
-
-            header {
-                padding: 22px 15px;
-            }
-
-            header h1 {
-                font-size: 24px;
-            }
-
-            .portfolio-card {
-                padding: 20px;
-            }
-
-            .actions button {
-                width: 100%;
-            }
-        }
-    </style>
-
+@media (max-width: 600px) {
+    body { padding: 12px; }
+    header h1 { font-size: 24px; }
+    .top-buttons { flex-direction: column; }
+}
+</style>
 </head>
-
 
 <body>
 
-
 <header>
-
-    <h1>Manage Portfolio</h1>
-
-    <p>
-        View your saved portfolio information
-    </p>
-
+    <h1>Manage Portfolios</h1>
+    <p>View, edit, or delete your saved portfolios.</p>
 </header>
-
 
 <main>
 
-
-    <!-- LOADING -->
-
-    <div id="loading">
-
-        Loading portfolio...
-
+    <div class="top-buttons">
+        <button class="create-btn" id="createBtn">+ Create New Portfolio</button>
+        <button class="refresh-btn" id="refreshBtn">Refresh</button>
     </div>
 
+    <div id="message" class="message">Loading portfolios...</div>
 
-    <!-- ERROR -->
-
-    <div id="error"></div>
-
-
-    <!-- NO PORTFOLIO -->
-
-    <div id="noPortfolio">
-
-        <h2>No Portfolio Found</h2>
-
-        <p style="margin-top: 10px;">
-            You haven't saved a portfolio yet.
-        </p>
-
-        <button
-            class="create-btn"
-            style="margin-top: 20px;"
-            onclick="goToCreate()"
-        >
-            Create Portfolio
-        </button>
-
-    </div>
-
-
-    <!-- PORTFOLIO -->
-
-    <div
-        id="portfolioCard"
-        class="portfolio-card"
-        style="display: none;"
-    >
-
-
-        <!-- PERSONAL INFORMATION -->
-
-        <div class="section">
-
-            <div class="section-title">
-                Personal Information
-            </div>
-
-
-            <div class="info">
-
-                <strong>
-                    Full Name:
-                </strong>
-
-                <span id="fullName">
-                    —
-                </span>
-
-            </div>
-
-
-            <div class="info">
-
-                <strong>
-                    Email:
-                </strong>
-
-                <span id="email">
-                    —
-                </span>
-
-            </div>
-
-
-            <div class="info">
-
-                <strong>
-                    Contact Number:
-                </strong>
-
-                <span id="contactNumber">
-                    —
-                </span>
-
-            </div>
-
-
-            <div class="info">
-
-                <strong>
-                    Address:
-                </strong>
-
-                <span id="address">
-                    —
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <!-- ABOUT ME -->
-
-        <div class="section">
-
-            <div class="section-title">
-                About Me
-            </div>
-
-            <div
-                id="aboutMe"
-                class="content"
-            >
-                —
-            </div>
-
-        </div>
-
-
-        <!-- EDUCATION -->
-
-        <div class="section">
-
-            <div class="section-title">
-                Education
-            </div>
-
-            <div
-                id="education"
-                class="content"
-            >
-                —
-            </div>
-
-        </div>
-
-
-        <!-- SKILLS -->
-
-        <div class="section">
-
-            <div class="section-title">
-                Skills
-            </div>
-
-            <div
-                id="skills"
-                class="content"
-            >
-                —
-            </div>
-
-        </div>
-
-
-        <!-- PROJECTS -->
-
-        <div class="section">
-
-            <div class="section-title">
-                Projects
-            </div>
-
-            <div
-                id="project"
-                class="content"
-            >
-                —
-            </div>
-
-        </div>
-
-
-        <!-- WORK EXPERIENCE -->
-
-        <div class="section">
-
-            <div class="section-title">
-                Work Experience
-            </div>
-
-            <div
-                id="workExperience"
-                class="content"
-            >
-                —
-            </div>
-
-        </div>
-
-
-        <!-- SOCIAL LINKS -->
-
-        <div class="section">
-
-            <div class="section-title">
-                Social Links
-            </div>
-
-            <div
-                id="socialLinks"
-                class="content"
-            >
-                —
-            </div>
-
-        </div>
-
-
-        <!-- TEMPLATE -->
-
-        <div class="section">
-
-            <div class="section-title">
-                Portfolio Template
-            </div>
-
-            <div
-                id="template"
-                class="content"
-            >
-                —
-            </div>
-
-        </div>
-
-
-        <!-- BUTTONS -->
-
-        <div class="actions">
-
-            <button
-                class="create-btn"
-                onclick="goToCreate()"
-            >
-                Create Another
-            </button>
-
-
-            <button
-                class="refresh-btn"
-                onclick="loadPortfolio()"
-            >
-                Refresh
-            </button>
-
-        </div>
-
-
-    </div>
-
+    <div id="portfolioList"></div>
 
 </main>
 
-
-<!-- SUPABASE LIBRARY -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-<!-- YOUR EXISTING SUPABASE CONNECTION -->
-
 <script src="supabase.js"></script>
 
-
 <script>
+// @ts-nocheck
+
+var messageBox = document.getElementById("message");
+var listBox = document.getElementById("portfolioList");
 
 
-async function loadPortfolio() {
-
-    const loading =
-        document.getElementById(
-            "loading"
-        );
-
-    const errorBox =
-        document.getElementById(
-            "error"
-        );
-
-    const noPortfolio =
-        document.getElementById(
-            "noPortfolio"
-        );
-
-    const portfolioCard =
-        document.getElementById(
-            "portfolioCard"
-        );
+function escapeHTML(value) {
+    if (value === null || value === undefined) {
+        return "";
+    }
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
 
-    /*
-        Reset screen
-    */
+function showMessage(text, isError) {
+    messageBox.style.display = "block";
+    messageBox.className = isError ? "error" : "message";
+    messageBox.textContent = text;
+}
 
-    loading.style.display =
-        "block";
 
-    errorBox.style.display =
-        "none";
+async function loadPortfolios() {
 
-    noPortfolio.style.display =
-        "none";
-
-    portfolioCard.style.display =
-        "none";
-
+    showMessage("Loading portfolios...", false);
+    listBox.innerHTML = "";
 
     try {
 
-
-        /*
-            Check Supabase connection
-        */
-
-        if (
-            typeof window.supabaseClient ===
-            "undefined"
-        ) {
-
-            throw new Error(
-                "Supabase is not connected. Check supabase.js."
-            );
-
+        if (typeof window.supabaseClient === "undefined") {
+            throw new Error("Supabase is not connected. Check supabase.js.");
         }
 
-
-        /*
-            Get latest portfolio
-        */
-
-        const {
-            data,
-            error
-        } = await window.supabaseClient
-
+        var result = await window.supabaseClient
             .from("portfolios")
-
             .select("*")
+            .order("created_at", { ascending: false });
 
-            .order(
-                "created_at",
-                {
-                    ascending: false
-                }
-            )
-
-            .limit(1);
-
-
-        /*
-            Supabase error
-        */
-
-        if (error) {
-
-            throw error;
-
+        if (result.error) {
+            throw result.error;
         }
 
+        var data = result.data;
 
-        /*
-            No portfolio
-        */
-
-        if (
-            !data ||
-            data.length === 0
-        ) {
-
-            loading.style.display =
-                "none";
-
-            noPortfolio.style.display =
-                "block";
-
+        if (!data || data.length === 0) {
+            showMessage("No portfolios found. Create your first portfolio!", false);
             return;
-
         }
 
+        messageBox.style.display = "none";
 
-        /*
-            Get portfolio
-        */
+        data.forEach(function (p) {
 
-        const portfolio =
-            data[0];
+            var card = document.createElement("div");
+            card.className = "card";
 
+            var created = p.created_at
+                ? new Date(p.created_at).toLocaleString()
+                : "Unknown date";
 
-        /*
-            Display information
-        */
+            card.innerHTML =
+                "<h2>" + escapeHTML(p.full_name || "Unnamed Portfolio") + "</h2>" +
+                "<p><strong>Email:</strong> " + escapeHTML(p.email || "No email") + "</p>" +
+                "<p><strong>Created:</strong> " + escapeHTML(created) + "</p>" +
+                "<span class='template'>" + escapeHTML(p.template || "modern") + "</span>" +
+                "<div class='actions'>" +
+                    "<button class='view-btn' data-action='view' data-id='" + escapeHTML(p.id) + "'>View</button>" +
+                    "<button class='edit-btn' data-action='edit' data-id='" + escapeHTML(p.id) + "'>Edit</button>" +
+                    "<button class='delete-btn' data-action='delete' data-id='" + escapeHTML(p.id) + "'>Delete</button>" +
+                "</div>";
 
-        document.getElementById(
-            "fullName"
-        ).textContent =
-            portfolio.full_name ||
-            "—";
+            listBox.appendChild(card);
+        });
 
+    } catch (error) {
 
-        document.getElementById(
-            "email"
-        ).textContent =
-            portfolio.email ||
-            "—";
-
-
-        document.getElementById(
-            "contactNumber"
-        ).textContent =
-            portfolio.contact_number ||
-            "—";
-
-
-        document.getElementById(
-            "address"
-        ).textContent =
-            portfolio.address ||
-            "—";
-
-
-        document.getElementById(
-            "aboutMe"
-        ).textContent =
-            portfolio.about_me ||
-            "—";
-
-
-        document.getElementById(
-            "education"
-        ).textContent =
-            portfolio.education ||
-            "—";
-
-
-        document.getElementById(
-            "skills"
-        ).textContent =
-            portfolio.skills ||
-            "—";
-
-
-        document.getElementById(
-            "project"
-        ).textContent =
-            portfolio.project ||
-            "—";
-
-
-        document.getElementById(
-            "workExperience"
-        ).textContent =
-            portfolio.work_experience ||
-            "—";
-
-
-        document.getElementById(
-            "socialLinks"
-        ).textContent =
-            portfolio.social_links ||
-            "—";
-
-
-        document.getElementById(
-            "template"
-        ).textContent =
-            portfolio.template ||
-            "—";
-
-
-        /*
-            Show portfolio
-        */
-
-        loading.style.display =
-            "none";
-
-        portfolioCard.style.display =
-            "block";
-
-
-        /*
-            Console for debugging
-        */
-
-        console.log(
-            "Portfolio loaded:",
-            portfolio
-        );
-
+        console.error("LOAD ERROR:", error);
+        showMessage("Error loading portfolios: " + error.message, true);
     }
-
-
-    catch (error) {
-
-
-        console.error(
-            "LOAD ERROR:",
-            error
-        );
-
-
-        loading.style.display =
-            "none";
-
-
-        errorBox.style.display =
-            "block";
-
-
-        errorBox.textContent =
-            "Error loading portfolio: " +
-            error.message;
-
-    }
-
 }
 
 
-/*
-    Go back to create page
-*/
+async function deletePortfolio(id, button) {
 
-function goToCreate() {
+    if (!confirm("Are you sure you want to delete this portfolio?")) {
+        return;
+    }
 
-    window.location.href =
-        "create.html";
+    button.disabled = true;
+    button.textContent = "Deleting...";
 
+    try {
+
+        var result = await window.supabaseClient
+            .from("portfolios")
+            .delete()
+            .eq("id", id)
+            .select();
+
+        if (result.error) {
+            throw result.error;
+        }
+
+        // If a policy blocks the delete, Supabase returns no error
+        // but also no deleted rows. Catch that case here.
+        if (!result.data || result.data.length === 0) {
+            throw new Error("Nothing was deleted. Check your delete policy in Supabase.");
+        }
+
+        loadPortfolios();
+
+    } catch (error) {
+
+        console.error("DELETE ERROR:", error);
+        alert("Could not delete portfolio:\n" + error.message);
+
+        button.disabled = false;
+        button.textContent = "Delete";
+    }
 }
 
 
-/*
-    Load portfolio when page opens
-*/
+// One listener handles every View / Edit / Delete button
+listBox.addEventListener("click", function (event) {
 
-loadPortfolio();
+    var button = event.target.closest("button[data-action]");
+
+    if (!button) {
+        return;
+    }
+
+    var id = button.getAttribute("data-id");
+    var action = button.getAttribute("data-action");
+
+    if (action === "view") {
+        window.location.href = "portfolio.html?id=" + encodeURIComponent(id);
+    }
+    else if (action === "edit") {
+        window.location.href = "create.html?id=" + encodeURIComponent(id);
+    }
+    else if (action === "delete") {
+        deletePortfolio(id, button);
+    }
+});
 
 
+document.getElementById("createBtn").addEventListener("click", function () {
+    window.location.href = "create.html";
+});
+
+document.getElementById("refreshBtn").addEventListener("click", loadPortfolios);
+
+
+loadPortfolios();
 </script>
 
-<div style="
-    text-align: center;
-    margin: 30px 15px;
-">
-
-    <button
-        onclick="window.location.href='portfolio.html'"
-        style="
-            width: 100%;
-            max-width: 350px;
-            padding: 16px 25px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
-            color: white;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 6px 15px rgba(79, 70, 229, 0.3);
-        "
-    >
-        View My Portfolio
-    </button>
-
-</div>
-  
-
 </body>
-
 </html>
