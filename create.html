@@ -560,14 +560,14 @@ document.addEventListener(
 
 
                    const {
-                        data,
-                        error
-                    } = await supabaseClient
-                        .from("portfolios")
-                        .insert([
-                            portfolio
-                        ])
-                        .select();
+    data,
+    error
+} = await window.supabaseClient
+    .from("portfolios")
+    .insert([
+        portfolio
+    ])
+    .select();
 
 
                     if (error) {
