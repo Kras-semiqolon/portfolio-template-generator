@@ -2,18 +2,11 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Portfolio</title>
 
 <style>
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -48,14 +41,22 @@ body {
     text-align: center;
 }
 
-#portfolio {
-    display: none;
+#portfolio { display: none; }
+
+.back-link {
+    display: block;
+    width: fit-content;
+    margin: 15px auto;
+    padding: 10px 18px;
+    border-radius: 20px;
+    background: #4f46e5;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
 }
 
-
-/* =========================
-   MODERN
-========================= */
+/* MODERN */
 
 .modern {
     min-height: 100vh;
@@ -94,9 +95,7 @@ body {
     font-size: 40px;
 }
 
-.modern-header p {
-    font-size: 17px;
-}
+.modern-header p { font-size: 17px; }
 
 .modern-contact {
     display: flex;
@@ -113,13 +112,9 @@ body {
     font-size: 14px;
 }
 
-.modern-content {
-    padding: 35px;
-}
+.modern-content { padding: 35px; }
 
-.modern-section {
-    margin-bottom: 35px;
-}
+.modern-section { margin-bottom: 35px; }
 
 .modern-section h2 {
     margin-bottom: 12px;
@@ -150,10 +145,7 @@ body {
     font-weight: bold;
 }
 
-
-/* =========================
-   CLASSIC
-========================= */
+/* CLASSIC */
 
 .classic {
     min-height: 100vh;
@@ -191,13 +183,9 @@ body {
     font-size: 40px;
 }
 
-.classic-header p {
-    color: #555;
-}
+.classic-header p { color: #555; }
 
-.classic-section {
-    margin-bottom: 30px;
-}
+.classic-section { margin-bottom: 30px; }
 
 .classic-section h2 {
     margin-bottom: 12px;
@@ -212,10 +200,7 @@ body {
     white-space: pre-wrap;
 }
 
-
-/* =========================
-   MINIMAL
-========================= */
+/* MINIMAL */
 
 .minimal {
     min-height: 100vh;
@@ -228,9 +213,7 @@ body {
     margin: auto;
 }
 
-.minimal-header {
-    margin-bottom: 55px;
-}
+.minimal-header { margin-bottom: 55px; }
 
 .minimal-header img {
     width: 100px;
@@ -251,9 +234,7 @@ body {
     font-size: 18px;
 }
 
-.minimal-section {
-    margin-bottom: 40px;
-}
+.minimal-section { margin-bottom: 40px; }
 
 .minimal-section h2 {
     margin-bottom: 15px;
@@ -269,11 +250,6 @@ body {
     white-space: pre-wrap;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-
 .footer {
     margin-top: 30px;
     color: #9ca3af;
@@ -281,419 +257,206 @@ body {
     text-align: center;
 }
 
-
-/* =========================
-   MOBILE
-========================= */
-
 @media (max-width: 600px) {
-
-    .modern-header h1 {
-        font-size: 32px;
-    }
-
-    .modern-content {
-        padding: 25px 20px;
-    }
-
-    .classic-container {
-        padding: 25px 20px;
-    }
-
-    .classic-header h1 {
-        font-size: 32px;
-    }
-
-    .minimal {
-        padding: 45px 20px;
-    }
-
-    .minimal-header h1 {
-        font-size: 36px;
-    }
-
+    .modern-header h1 { font-size: 32px; }
+    .modern-content { padding: 25px 20px; }
+    .classic-container { padding: 25px 20px; }
+    .classic-header h1 { font-size: 32px; }
+    .minimal { padding: 45px 20px; }
+    .minimal-header h1 { font-size: 36px; }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<div id="loading">
-    Loading portfolio...
-</div>
-
+<div id="loading">Loading portfolio...</div>
 
 <div id="error"></div>
 
-
 <div id="portfolio">
 
+<a class="back-link" href="manage.html">← Back to Manage</a>
 
-<!-- =========================
-     MODERN TEMPLATE
-========================= -->
-
-<div
-    id="modernTemplate"
-    class="modern"
-    style="display: none;"
->
-
+<!-- MODERN -->
+<div id="modernTemplate" class="modern" style="display: none;">
 <div class="modern-container">
 
 <div class="modern-header">
-
-<img
-    id="modernImage"
-    alt="Profile Picture"
->
-
-<h1 id="modernName">
-    Your Name
-</h1>
-
-<p id="modernEmail">
-    email@example.com
-</p>
-
-<div class="modern-contact">
-
-<span id="modernContact"></span>
-
-<span id="modernAddress"></span>
-
+    <img id="modernImage" alt="Profile Picture">
+    <h1 id="modernName">Your Name</h1>
+    <p id="modernEmail"></p>
+    <div class="modern-contact">
+        <span id="modernContact"></span>
+        <span id="modernAddress"></span>
+    </div>
 </div>
-
-</div>
-
 
 <div class="modern-content">
 
+    <div class="modern-section">
+        <h2>About Me</h2>
+        <p id="modernAbout"></p>
+    </div>
 
-<div class="modern-section">
+    <div class="modern-section">
+        <h2>Education</h2>
+        <p id="modernEducation"></p>
+    </div>
 
-<h2>About Me</h2>
+    <div class="modern-section">
+        <h2>Skills</h2>
+        <div id="modernSkills" class="skills-container"></div>
+    </div>
 
-<p id="modernAbout"></p>
+    <div class="modern-section">
+        <h2>Projects</h2>
+        <p id="modernProjects"></p>
+    </div>
 
-</div>
+    <div class="modern-section">
+        <h2>Work Experience</h2>
+        <p id="modernWork"></p>
+    </div>
 
+    <div class="modern-section">
+        <h2>Social Links</h2>
+        <p id="modernSocial"></p>
+    </div>
 
-<div class="modern-section">
-
-<h2>Education</h2>
-
-<p id="modernEducation"></p>
-
-</div>
-
-
-<div class="modern-section">
-
-<h2>Skills</h2>
-
-<div
-    id="modernSkills"
-    class="skills-container"
-></div>
-
-</div>
-
-
-<div class="modern-section">
-
-<h2>Projects</h2>
-
-<p id="modernProjects"></p>
+    <div class="footer">Portfolio Generator</div>
 
 </div>
-
-
-<div class="modern-section">
-
-<h2>Work Experience</h2>
-
-<p id="modernWork"></p>
-
+</div>
 </div>
 
-
-<div class="modern-section">
-
-<h2>Social Links</h2>
-
-<p id="modernSocial"></p>
-
-</div>
-
-
-<div class="footer">
-    Portfolio Generator
-</div>
-
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =========================
-     CLASSIC TEMPLATE
-========================= -->
-
-<div
-    id="classicTemplate"
-    class="classic"
-    style="display: none;"
->
-
+<!-- CLASSIC -->
+<div id="classicTemplate" class="classic" style="display: none;">
 <div class="classic-container">
 
 <div class="classic-header">
-
-<img
-    id="classicImage"
-    alt="Profile Picture"
->
-
-<h1 id="classicName">
-    Your Name
-</h1>
-
-<p id="classicEmail">
-    email@example.com
-</p>
-
+    <img id="classicImage" alt="Profile Picture">
+    <h1 id="classicName">Your Name</h1>
+    <p id="classicEmail"></p>
 </div>
-
 
 <div class="classic-section">
-
-<h2>Contact</h2>
-
-<p id="classicContact"></p>
-
-<p id="classicAddress"></p>
-
+    <h2>Contact</h2>
+    <p id="classicContact"></p>
+    <p id="classicAddress"></p>
 </div>
-
 
 <div class="classic-section">
-
-<h2>About Me</h2>
-
-<p id="classicAbout"></p>
-
+    <h2>About Me</h2>
+    <p id="classicAbout"></p>
 </div>
-
 
 <div class="classic-section">
-
-<h2>Education</h2>
-
-<p id="classicEducation"></p>
-
+    <h2>Education</h2>
+    <p id="classicEducation"></p>
 </div>
-
 
 <div class="classic-section">
-
-<h2>Skills</h2>
-
-<p id="classicSkills"></p>
-
+    <h2>Skills</h2>
+    <p id="classicSkills"></p>
 </div>
-
 
 <div class="classic-section">
-
-<h2>Projects</h2>
-
-<p id="classicProjects"></p>
-
+    <h2>Projects</h2>
+    <p id="classicProjects"></p>
 </div>
-
 
 <div class="classic-section">
-
-<h2>Work Experience</h2>
-
-<p id="classicWork"></p>
-
+    <h2>Work Experience</h2>
+    <p id="classicWork"></p>
 </div>
-
 
 <div class="classic-section">
-
-<h2>Social Links</h2>
-
-<p id="classicSocial"></p>
-
+    <h2>Social Links</h2>
+    <p id="classicSocial"></p>
 </div>
 
-
-<div class="footer">
-    Portfolio Generator
-</div>
-
+<div class="footer">Portfolio Generator</div>
 
 </div>
-
 </div>
 
-
-<!-- =========================
-     MINIMAL TEMPLATE
-========================= -->
-
-<div
-    id="minimalTemplate"
-    class="minimal"
-    style="display: none;"
->
-
+<!-- MINIMAL -->
+<div id="minimalTemplate" class="minimal" style="display: none;">
 <div class="minimal-container">
 
-
 <div class="minimal-header">
-
-<img
-    id="minimalImage"
-    alt="Profile Picture"
->
-
-<h1 id="minimalName">
-    Your Name
-</h1>
-
-<p id="minimalEmail">
-    email@example.com
-</p>
-
+    <img id="minimalImage" alt="Profile Picture">
+    <h1 id="minimalName">Your Name</h1>
+    <p id="minimalEmail"></p>
 </div>
-
 
 <div class="minimal-section">
-
-<h2>About</h2>
-
-<p id="minimalAbout"></p>
-
+    <h2>About</h2>
+    <p id="minimalAbout"></p>
 </div>
-
 
 <div class="minimal-section">
-
-<h2>Education</h2>
-
-<p id="minimalEducation"></p>
-
+    <h2>Education</h2>
+    <p id="minimalEducation"></p>
 </div>
-
 
 <div class="minimal-section">
-
-<h2>Skills</h2>
-
-<p id="minimalSkills"></p>
-
+    <h2>Skills</h2>
+    <p id="minimalSkills"></p>
 </div>
-
 
 <div class="minimal-section">
-
-<h2>Projects</h2>
-
-<p id="minimalProjects"></p>
-
+    <h2>Projects</h2>
+    <p id="minimalProjects"></p>
 </div>
-
 
 <div class="minimal-section">
-
-<h2>Experience</h2>
-
-<p id="minimalWork"></p>
-
+    <h2>Experience</h2>
+    <p id="minimalWork"></p>
 </div>
-
 
 <div class="minimal-section">
-
-<h2>Contact</h2>
-
-<p id="minimalContact"></p>
-
-<p id="minimalAddress"></p>
-
-<p id="minimalSocial"></p>
-
+    <h2>Contact</h2>
+    <p id="minimalContact"></p>
+    <p id="minimalAddress"></p>
+    <p id="minimalSocial"></p>
 </div>
 
+<div class="footer">Portfolio Generator</div>
 
-<div class="footer">
-    Portfolio Generator
 </div>
-
-
 </div>
 
 </div>
-
-
-</div>
-
-
-<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="supabase.js"></script>
 
-
 <script>
-
 // @ts-nocheck
 
-
 function setText(id, value) {
-
-    const element = document.getElementById(id);
-
+    var element = document.getElementById(id);
     if (element) {
         element.textContent = value || "—";
     }
-
 }
 
-
 function setImage(id, url) {
-
-    const image = document.getElementById(id);
-
+    var image = document.getElementById(id);
     if (!image) {
         return;
     }
-
     if (url && url.trim() !== "") {
-
         image.src = url;
         image.style.display = "block";
-
     }
-
 }
-
 
 function displaySkills(id, skills) {
 
-    const container = document.getElementById(id);
+    var container = document.getElementById(id);
 
     if (!container) {
         return;
@@ -702,35 +465,20 @@ function displaySkills(id, skills) {
     container.innerHTML = "";
 
     if (!skills || skills.trim() === "") {
-
         container.textContent = "—";
-
         return;
-
     }
 
-    const skillList = skills
+    skills
         .split(/[,|\n]/)
-        .map(function(skill) {
-            return skill.trim();
-        })
-        .filter(function(skill) {
-            return skill !== "";
+        .map(function (s) { return s.trim(); })
+        .filter(function (s) { return s !== ""; })
+        .forEach(function (skill) {
+            var span = document.createElement("span");
+            span.className = "skill";
+            span.textContent = skill;
+            container.appendChild(span);
         });
-
-
-    skillList.forEach(function(skill) {
-
-        const span = document.createElement("span");
-
-        span.className = "skill";
-
-        span.textContent = skill;
-
-        container.appendChild(span);
-
-    });
-
 }
 
 
@@ -738,244 +486,95 @@ async function loadPortfolio() {
 
     try {
 
-        if (
-            typeof window.supabaseClient ===
-            "undefined"
-        ) {
-
-            throw new Error(
-                "Supabase is not connected. Check supabase.js."
-            );
-
+        if (typeof window.supabaseClient === "undefined") {
+            throw new Error("Supabase is not connected. Check supabase.js.");
         }
 
+        // Open the portfolio from ?id=..., or the newest one if no id
+        var id = new URLSearchParams(window.location.search).get("id");
 
-        const result =
-            await window.supabaseClient
-                .from("portfolios")
-                .select("*")
-                .order(
-                    "created_at",
-                    {
-                        ascending: false
-                    }
-                )
+        var query = window.supabaseClient
+            .from("portfolios")
+            .select("*");
+
+        if (id) {
+            query = query.eq("id", id).limit(1);
+        } else {
+            query = query
+                .order("created_at", { ascending: false })
                 .limit(1);
+        }
 
+        var result = await query;
 
         if (result.error) {
-
             throw result.error;
-
         }
 
-
-        if (
-            !result.data ||
-            result.data.length === 0
-        ) {
-
-            throw new Error(
-                "No portfolio found. Create a portfolio first."
-            );
-
+        if (!result.data || result.data.length === 0) {
+            throw new Error("No portfolio found. Create a portfolio first.");
         }
 
+        var p = result.data[0];
 
-        const portfolio = result.data[0];
+        var name = p.full_name || "Your Name";
+        var email = p.email || "";
+        var contact = p.contact_number || "";
+        var address = p.address || "";
+        var about = p.about_me || "";
+        var education = p.education || "";
+        var skills = p.skills || "";
+        var projects = p.projects || p.project || "";
+        var work = p.work_experience || "";
+        var social = p.social_links || "";
+        var template = p.template || "modern";
+        var photo = p.profile_picture || "";
 
+        var prefixes = ["modern", "classic", "minimal"];
 
-        console.log(
-            "Portfolio loaded:",
-            portfolio
-        );
+        prefixes.forEach(function (x) {
 
+            setText(x + "Name", name);
+            setText(x + "Email", email);
+            setText(x + "Contact", contact);
+            setText(x + "Address", address);
+            setText(x + "About", about);
+            setText(x + "Education", education);
+            setText(x + "Projects", projects);
+            setText(x + "Work", work);
+            setText(x + "Social", social);
+            setImage(x + "Image", photo);
 
-        const name =
-            portfolio.full_name || "Your Name";
+            if (x === "modern") {
+                displaySkills("modernSkills", skills);
+            } else {
+                setText(x + "Skills", skills);
+            }
 
-        const email =
-            portfolio.email || "";
+            document.getElementById(x + "Template").style.display = "none";
+        });
 
-        const contact =
-            portfolio.contact_number || "";
+        var chosen = prefixes.indexOf(template) !== -1 ? template : "modern";
 
-        const address =
-            portfolio.address || "";
+        document.getElementById(chosen + "Template").style.display = "block";
 
-        const about =
-            portfolio.about_me || "";
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("portfolio").style.display = "block";
 
-        const education =
-            portfolio.education || "";
+    } catch (error) {
 
-        const skills =
-            portfolio.skills || "";
+        console.error("PORTFOLIO ERROR:", error);
 
-        const projects =
-            portfolio.project ||
-            portfolio.projects ||
-            "";
+        document.getElementById("loading").style.display = "none";
 
-        const work =
-            portfolio.work_experience || "";
-
-        const social =
-            portfolio.social_links || "";
-
-        const template =
-            portfolio.template || "modern";
-
-        const profilePicture =
-            portfolio.profile_picture || "";
-
-
-        /* MODERN */
-
-        setText("modernName", name);
-        setText("modernEmail", email);
-        setText("modernContact", contact);
-        setText("modernAddress", address);
-        setText("modernAbout", about);
-        setText("modernEducation", education);
-        setText("modernProjects", projects);
-        setText("modernWork", work);
-        setText("modernSocial", social);
-
-        displaySkills(
-            "modernSkills",
-            skills
-        );
-
-        setImage(
-            "modernImage",
-            profilePicture
-        );
-
-
-        /* CLASSIC */
-
-        setText("classicName", name);
-        setText("classicEmail", email);
-        setText("classicContact", contact);
-        setText("classicAddress", address);
-        setText("classicAbout", about);
-        setText("classicEducation", education);
-        setText("classicSkills", skills);
-        setText("classicProjects", projects);
-        setText("classicWork", work);
-        setText("classicSocial", social);
-
-        setImage(
-            "classicImage",
-            profilePicture
-        );
-
-
-        /* MINIMAL */
-
-        setText("minimalName", name);
-        setText("minimalEmail", email);
-        setText("minimalContact", contact);
-        setText("minimalAddress", address);
-        setText("minimalAbout", about);
-        setText("minimalEducation", education);
-        setText("minimalSkills", skills);
-        setText("minimalProjects", projects);
-        setText("minimalWork", work);
-        setText("minimalSocial", social);
-
-        setImage(
-            "minimalImage",
-            profilePicture
-        );
-
-
-        /* HIDE ALL */
-
-        document.getElementById(
-            "modernTemplate"
-        ).style.display = "none";
-
-        document.getElementById(
-            "classicTemplate"
-        ).style.display = "none";
-
-        document.getElementById(
-            "minimalTemplate"
-        ).style.display = "none";
-
-
-        /* SELECT TEMPLATE */
-
-        if (template === "classic") {
-
-            document.getElementById(
-                "classicTemplate"
-            ).style.display = "block";
-
-        }
-        else if (template === "minimal") {
-
-            document.getElementById(
-                "minimalTemplate"
-            ).style.display = "block";
-
-        }
-        else {
-
-            document.getElementById(
-                "modernTemplate"
-            ).style.display = "block";
-
-        }
-
-
-        /* SHOW */
-
-        document.getElementById(
-            "loading"
-        ).style.display = "none";
-
-        document.getElementById(
-            "portfolio"
-        ).style.display = "block";
-
-
-    }
-    catch (error) {
-
-        console.error(
-            "PORTFOLIO ERROR:",
-            error
-        );
-
-
-        document.getElementById(
-            "loading"
-        ).style.display = "none";
-
-
-        const errorBox =
-            document.getElementById("error");
-
-
+        var errorBox = document.getElementById("error");
         errorBox.style.display = "block";
-
-
-        errorBox.textContent =
-            "Error: " + error.message;
-
+        errorBox.textContent = "Error: " + error.message;
     }
-
 }
 
-
 loadPortfolio();
-
 </script>
 
-
 </body>
-
 </html>
