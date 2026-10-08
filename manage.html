@@ -1,166 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Manage Portfolios</title>
-
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    min-height: 100vh;
-    padding: 20px;
-    background: linear-gradient(135deg, #dbeafe, #e0e7ff, #f3e8ff);
-    color: #222;
-}
-
-header {
-    max-width: 800px;
-    margin: 0 auto 25px;
-    padding: 28px 20px;
-    text-align: center;
-    color: white;
-    border-radius: 18px;
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-header h1 {
-    font-size: 28px;
-    margin-bottom: 8px;
-}
-
-header p {
-    font-size: 14px;
-    opacity: 0.9;
-}
-
-main {
-    max-width: 800px;
-    margin: auto;
-}
-
-button {
-    border: none;
-    border-radius: 10px;
-    padding: 12px 16px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-button:active {
-    transform: scale(0.98);
-}
-
-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.top-buttons {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.create-btn {
-    flex: 1;
-    color: white;
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
-}
-
-.refresh-btn {
-    color: #111827;
-    background: #e5e7eb;
-}
-
-.card {
-    margin-bottom: 15px;
-    padding: 20px;
-    border-radius: 16px;
-    background: white;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-}
-
-.card h2 {
-    margin-bottom: 8px;
-    color: #333;
-    font-size: 20px;
-    word-break: break-word;
-}
-
-.card p {
-    margin: 6px 0;
-    color: #555;
-    font-size: 14px;
-    word-break: break-word;
-}
-
-.template {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 5px 12px;
-    border-radius: 20px;
-    background: #eef2ff;
-    color: #4f46e5;
-    font-size: 13px;
-    font-weight: bold;
-    text-transform: capitalize;
-}
-
-.actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 15px;
-}
-
-.actions button {
-    flex: 1;
-    min-width: 90px;
-    color: white;
-}
-
-.view-btn { background: #4f46e5; }
-.edit-btn { background: #3498db; }
-.template-btn { background: #7c3aed; }
-.delete-btn { background: #e74c3c; }
-
-.message {
-    padding: 30px;
-    text-align: center;
-    color: #555;
-    border-radius: 16px;
-    background: white;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-}
-
-.error {
-    margin-bottom: 15px;
-    padding: 15px;
-    color: #b91c1c;
-    border-radius: 12px;
-    background: #fee2e2;
-    line-height: 1.5;
-}
-
-@media (max-width: 600px) {
-    body { padding: 12px; }
-    header h1 { font-size: 24px; }
-    .top-buttons { flex-direction: column; }
-}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+body { min-height: 100vh; background: linear-gradient(135deg, #dbeafe, #e0e7ff, #f3e8ff); color: #222; }
+.topnav { display: flex; justify-content: center; gap: 4px; padding: 10px; background: linear-gradient(135deg, #4f46e5, #7c3aed); position: sticky; top: 0; z-index: 10; }
+.topnav a { padding: 8px 12px; border-radius: 20px; color: white; font-size: 14px; font-weight: bold; text-decoration: none; }
+.topnav a.active { background: rgba(255,255,255,0.25); }
+.page { padding: 20px; }
+header { max-width: 800px; margin: 0 auto 25px; padding: 26px 20px; text-align: center; color: white; border-radius: 18px; background: linear-gradient(135deg, #4f46e5, #7c3aed); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+header h1 { font-size: 26px; margin-bottom: 6px; }
+header p { font-size: 14px; opacity: 0.9; }
+main { max-width: 800px; margin: auto; }
+button { border: none; border-radius: 10px; padding: 12px 16px; font-size: 14px; font-weight: bold; cursor: pointer; }
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+.top-buttons { display: flex; gap: 10px; margin-bottom: 20px; }
+.create-btn { flex: 1; color: white; background: linear-gradient(135deg, #4f46e5, #7c3aed); }
+.refresh-btn { color: #111827; background: #e5e7eb; }
+.card { margin-bottom: 15px; padding: 20px; border-radius: 16px; background: white; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+.card h2 { margin-bottom: 8px; color: #333; font-size: 20px; word-break: break-word; }
+.card p { margin: 6px 0; color: #555; font-size: 14px; word-break: break-word; }
+.template { display: inline-block; margin-top: 8px; padding: 5px 12px; border-radius: 20px; background: #eef2ff; color: #4f46e5; font-size: 13px; font-weight: bold; text-transform: capitalize; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+.actions button { flex: 1; min-width: 90px; color: white; }
+.view-btn { background: #4f46e5; } .edit-btn { background: #3498db; }
+.template-btn { background: #7c3aed; } .delete-btn { background: #e74c3c; }
+.message { padding: 30px; text-align: center; color: #555; border-radius: 16px; background: white; }
+.error { margin-bottom: 15px; padding: 15px; color: #b91c1c; border-radius: 12px; background: #fee2e2; line-height: 1.5; }
+@media (max-width: 600px) { .page { padding: 12px; } .top-buttons { flex-direction: column; } }
 </style>
 </head>
-
 <body>
+
+<nav class="topnav">
+    <a href="create.html">Create</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="manage.html" class="active">Manage</a>
+    <a href="template.html">Template</a>
+</nav>
+
+<div class="page">
 
 <header>
     <h1>Manage Portfolios</h1>
@@ -168,40 +50,29 @@ button:disabled {
 </header>
 
 <main>
-
     <div class="top-buttons">
         <button class="create-btn" id="createBtn">+ Create New Portfolio</button>
         <button class="refresh-btn" id="refreshBtn">Refresh</button>
     </div>
-
     <div id="message" class="message">Loading portfolios...</div>
-
     <div id="portfolioList"></div>
-
 </main>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
-
 <script>
 // @ts-nocheck
 
 var messageBox = document.getElementById("message");
 var listBox = document.getElementById("portfolioList");
 
-
 function escapeHTML(value) {
-    if (value === null || value === undefined) {
-        return "";
-    }
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    if (value === null || value === undefined) { return ""; }
+    return String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
-
 
 function showMessage(text, isError) {
     messageBox.style.display = "block";
@@ -209,26 +80,20 @@ function showMessage(text, isError) {
     messageBox.textContent = text;
 }
 
-
 async function loadPortfolios() {
-
     showMessage("Loading portfolios...", false);
     listBox.innerHTML = "";
 
     try {
-
         if (typeof window.supabaseClient === "undefined") {
             throw new Error("Supabase is not connected. Check supabase.js.");
         }
 
         var result = await window.supabaseClient
-            .from("portfolios")
-            .select("*")
+            .from("portfolios").select("*")
             .order("created_at", { ascending: false });
 
-        if (result.error) {
-            throw result.error;
-        }
+        if (result.error) { throw result.error; }
 
         var data = result.data;
 
@@ -240,13 +105,11 @@ async function loadPortfolios() {
         messageBox.style.display = "none";
 
         data.forEach(function (p) {
-
             var card = document.createElement("div");
             card.className = "card";
 
-            var created = p.created_at
-                ? new Date(p.created_at).toLocaleString()
-                : "Unknown date";
+            var created = p.created_at ? new Date(p.created_at).toLocaleString() : "Unknown date";
+            var id = escapeHTML(p.id);
 
             card.innerHTML =
                 "<h2>" + escapeHTML(p.full_name || "Unnamed Portfolio") + "</h2>" +
@@ -254,46 +117,32 @@ async function loadPortfolios() {
                 "<p><strong>Created:</strong> " + escapeHTML(created) + "</p>" +
                 "<span class='template'>" + escapeHTML(p.template || "modern") + "</span>" +
                 "<div class='actions'>" +
-                    "<button class='view-btn' data-action='view' data-id='" + escapeHTML(p.id) + "'>View</button>" +
-                    "<button class='edit-btn' data-action='edit' data-id='" + escapeHTML(p.id) + "'>Edit</button>" +
-                    "<button class='template-btn' data-action='template' data-id='" + escapeHTML(p.id) + "'>Template</button>" +
-                    "<button class='delete-btn' data-action='delete' data-id='" + escapeHTML(p.id) + "'>Delete</button>" +
+                    "<button class='view-btn' data-action='view' data-id='" + id + "'>View</button>" +
+                    "<button class='edit-btn' data-action='edit' data-id='" + id + "'>Edit</button>" +
+                    "<button class='template-btn' data-action='template' data-id='" + id + "'>Template</button>" +
+                    "<button class='delete-btn' data-action='delete' data-id='" + id + "'>Delete</button>" +
                 "</div>";
 
             listBox.appendChild(card);
         });
 
     } catch (error) {
-
         console.error("LOAD ERROR:", error);
         showMessage("Error loading portfolios: " + error.message, true);
     }
 }
 
-
 async function deletePortfolio(id, button) {
-
-    if (!confirm("Delete this portfolio? This cannot be undone.")) {
-        return;
-    }
+    if (!confirm("Delete this portfolio? This cannot be undone.")) { return; }
 
     button.disabled = true;
     button.textContent = "Deleting...";
 
     try {
-
         var result = await window.supabaseClient
-            .from("portfolios")
-            .delete()
-            .eq("id", id)
-            .select();
+            .from("portfolios").delete().eq("id", id).select();
 
-        if (result.error) {
-            throw result.error;
-        }
-
-        // If a policy blocks the delete, Supabase returns no error
-        // but also no deleted rows. Catch that case here.
+        if (result.error) { throw result.error; }
         if (!result.data || result.data.length === 0) {
             throw new Error("Nothing was deleted. Check your delete policy in Supabase.");
         }
@@ -301,52 +150,31 @@ async function deletePortfolio(id, button) {
         loadPortfolios();
 
     } catch (error) {
-
         console.error("DELETE ERROR:", error);
         alert("Could not delete portfolio:\n" + error.message);
-
         button.disabled = false;
         button.textContent = "Delete";
     }
 }
 
-
-// One listener handles every View / Edit / Template / Delete button
 listBox.addEventListener("click", function (event) {
-
     var button = event.target.closest("button[data-action]");
-
-    if (!button) {
-        return;
-    }
+    if (!button) { return; }
 
     var id = button.getAttribute("data-id");
     var action = button.getAttribute("data-action");
+    var q = "?id=" + encodeURIComponent(id);
 
-    if (action === "view") {
-        window.location.href = "portfolio.html?id=" + encodeURIComponent(id);
-    }
-    else if (action === "edit") {
-        window.location.href = "create.html?id=" + encodeURIComponent(id);
-    }
-    else if (action === "template") {
-        window.location.href = "template.html?id=" + encodeURIComponent(id);
-    }
-    else if (action === "delete") {
-        deletePortfolio(id, button);
-    }
+    if (action === "view") { window.location.href = "portfolio.html" + q; }
+    else if (action === "edit") { window.location.href = "create.html" + q; }
+    else if (action === "template") { window.location.href = "template.html" + q; }
+    else if (action === "delete") { deletePortfolio(id, button); }
 });
 
-
-document.getElementById("createBtn").addEventListener("click", function () {
-    window.location.href = "create.html";
-});
-
-document.getElementById("refreshBtn").addEventListener("click", loadPortfolios);
-
+document.getElementById("createBtn").onclick = function () { window.location.href = "create.html"; };
+document.getElementById("refreshBtn").onclick = loadPortfolios;
 
 loadPortfolios();
 </script>
-
 </body>
 </html>
