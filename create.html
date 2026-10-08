@@ -1,512 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Create Your Portfolio</title>
+    <title>Create Portfolio</title>
 
     <style>
-
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #eef2ff,
-                    #f8f9ff,
-                    #e8f7ff
-                );
-
-            color: #1f2937;
             min-height: 100vh;
+            background: linear-gradient(
+                135deg,
+                #dbeafe,
+                #e0e7ff,
+                #f3e8ff
+            );
+            padding-bottom: 50px;
         }
 
-        /* Header */
-
-        .top-bar {
+        header {
             background: linear-gradient(
                 135deg,
                 #4f46e5,
-                #6366f1
+                #7c3aed
             );
-
             color: white;
             padding: 25px 20px;
-
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
-        .top-bar h1 {
-            margin: 0;
-            text-align: center;
-            font-size: 30px;
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 6px;
         }
 
-        .top-bar p {
-            text-align: center;
-            margin: 8px 0 0;
+        header p {
+            font-size: 14px;
             opacity: 0.9;
         }
 
-        /* Main */
-
         main {
-            width: 100%;
             max-width: 800px;
-
-            margin: 35px auto;
-            padding: 0 20px;
+            margin: 30px auto;
+            padding: 0 15px;
         }
 
-        /* Form */
-
-        form {
-            background: rgba(255, 255, 255, 0.95);
-
-            padding: 30px;
-
-            border-radius: 18px;
-
-            box-shadow:
-                0 10px 35px rgba(31, 41, 55, 0.10);
-        }
-
-        /* Sections */
-
-        .form-section {
-            margin-bottom: 30px;
-
-            padding: 22px;
-
-            background: #fafbff;
-
-            border: 1px solid #e5e7eb;
-
-            border-radius: 14px;
-        }
-
-        .form-section h2 {
-            margin-top: 0;
+        .form-card {
+            background: white;
+            padding: 25px;
             margin-bottom: 20px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
 
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
             color: #4f46e5;
-
-            font-size: 21px;
-
-            border-left: 4px solid #6366f1;
-
-            padding-left: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e7ff;
         }
 
-        /* Form Groups */
-
-        .form-group {
+        .input-group {
             margin-bottom: 18px;
-        }
-
-        .form-group:last-child {
-            margin-bottom: 0;
         }
 
         label {
             display: block;
-
-            margin-bottom: 7px;
-
             font-weight: bold;
-
+            margin-bottom: 7px;
             color: #374151;
         }
 
         input,
         textarea {
             width: 100%;
-
-            padding: 12px 14px;
-
+            padding: 13px 15px;
             border: 1px solid #d1d5db;
-
-            border-radius: 9px;
-
-            background: white;
-
-            color: #1f2937;
-
+            border-radius: 10px;
             font-size: 15px;
-
             outline: none;
-
             transition: 0.2s;
         }
 
         input:focus,
         textarea:focus {
             border-color: #6366f1;
-
-            box-shadow:
-                0 0 0 3px rgba(99, 102, 241, 0.12);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
         }
 
         textarea {
             min-height: 110px;
-
             resize: vertical;
-
-            font-family: Arial, sans-serif;
         }
 
-        input[type="file"] {
-            padding: 10px;
-
-            background: #f8f9ff;
-
-            cursor: pointer;
-        }
-
-        /* Buttons */
-
-        .button-area {
+        .save-container {
             text-align: center;
-
-            margin-top: 10px;
+            margin-top: 25px;
         }
 
         .save-btn {
             width: 100%;
-
-            padding: 14px 20px;
-
+            max-width: 350px;
+            padding: 15px 25px;
             border: none;
-
-            border-radius: 10px;
-
+            border-radius: 12px;
             background: linear-gradient(
                 135deg,
                 #4f46e5,
-                #6366f1
+                #7c3aed
             );
-
             color: white;
-
-            font-size: 16px;
-
+            font-size: 17px;
             font-weight: bold;
-
             cursor: pointer;
-
+            box-shadow: 0 6px 15px rgba(79, 70, 229, 0.3);
             transition: 0.2s;
-
-            box-shadow:
-                0 5px 15px rgba(79, 70, 229, 0.25);
         }
 
         .save-btn:hover {
             transform: translateY(-2px);
-
-            box-shadow:
-                0 8px 20px rgba(79, 70, 229, 0.3);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
         }
 
         .save-btn:active {
             transform: translateY(0);
         }
 
-        .back-btn {
-            display: inline-block;
-
-            margin-top: 18px;
-
-            text-decoration: none;
-
-            color: #4f46e5;
-
-            font-weight: bold;
-
-            transition: 0.2s;
-        }
-
-        .back-btn:hover {
-            color: #3730a3;
-        }
-
-        /* Small screens */
-
         @media (max-width: 600px) {
-
-            .top-bar h1 {
-                font-size: 25px;
+            header h1 {
+                font-size: 24px;
             }
 
-            main {
-                margin: 20px auto;
-                padding: 0 12px;
+            .form-card {
+                padding: 20px;
             }
-
-            form {
-                padding: 18px;
-            }
-
-            .form-section {
-                padding: 17px;
-            }
-
         }
-
     </style>
 </head>
 
 <body>
 
-    <!-- Header -->
-
-    <header class="top-bar">
-
+    <header>
         <h1>Create Your Portfolio</h1>
-
-        <p>
-            Enter your information below.
-        </p>
-
+        <p>Fill in your information to create your portfolio.</p>
     </header>
-
-
-    <!-- Main -->
 
     <main>
 
+        <!-- IMPORTANT: The form ID must match the JavaScript -->
         <form id="portfolioForm">
 
-
             <!-- Personal Information -->
+            <div class="form-card">
 
-            <section class="form-section">
+                <div class="section-title">
+                    Personal Information
+                </div>
 
-                <h2>Personal Information</h2>
-
-                <div class="form-group">
-
-                    <label for="fullName">
-                        Full Name
-                    </label>
-
+                <div class="input-group">
+                    <label for="fullName">Full Name</label>
                     <input
                         type="text"
                         id="fullName"
-                        name="full_name"
                         placeholder="Enter your full name"
                         required
                     >
-
                 </div>
 
-
-                <div class="form-group">
-
-                    <label for="profilePicture">
-                        Profile Picture
-                    </label>
-
-                    <input
-                        type="file"
-                        id="profilePicture"
-                        name="profile_picture"
-                        accept="image/*"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="email">
-                        Email
-                    </label>
-
+                <div class="input-group">
+                    <label for="email">Email</label>
                     <input
                         type="email"
                         id="email"
-                        name="email"
-                        placeholder="example@email.com"
+                        placeholder="Enter your email"
                         required
                     >
-
                 </div>
 
-
-                <div class="form-group">
-
-                    <label for="contact">
-                        Contact Number
-                    </label>
-
+                <div class="input-group">
+                    <label for="contact">Contact Number</label>
                     <input
-                        type="tel"
+                        type="text"
                         id="contact"
-                        name="contact_number"
-                        placeholder="09XXXXXXXXX"
+                        placeholder="Enter your contact number"
                     >
-
                 </div>
 
-
-                <div class="form-group">
-
-                    <label for="address">
-                        Address
-                    </label>
-
+                <div class="input-group">
+                    <label for="address">Address</label>
                     <input
                         type="text"
                         id="address"
-                        name="address"
                         placeholder="Enter your address"
                     >
-
                 </div>
 
+            </div>
 
-                <div class="form-group">
 
-                    <label for="about">
-                        About Me
-                    </label>
+            <!-- About Me -->
+            <div class="form-card">
 
+                <div class="section-title">
+                    About Me
+                </div>
+
+                <div class="input-group">
+                    <label for="about">About Me</label>
                     <textarea
                         id="about"
-                        name="about_me"
-                        placeholder="Tell something about yourself..."
+                        placeholder="Tell us about yourself..."
                     ></textarea>
-
                 </div>
 
-            </section>
+            </div>
 
 
             <!-- Education -->
+            <div class="form-card">
 
-            <section class="form-section">
-
-                <h2>Educational Background</h2>
-
-                <div class="form-group">
-
-                    <label for="education">
-                        Education
-                    </label>
-
-                    <textarea
-                        id="education"
-                        name="education"
-                        placeholder="School, course, year, achievements, etc."
-                    ></textarea>
-
+                <div class="section-title">
+                    Education
                 </div>
 
-            </section>
+                <div class="input-group">
+                    <label for="education">Education</label>
+                    <textarea
+                        id="education"
+                        placeholder="Enter your educational background..."
+                    ></textarea>
+                </div>
+
+            </div>
 
 
             <!-- Skills -->
+            <div class="form-card">
 
-            <section class="form-section">
-
-                <h2>Skills</h2>
-
-                <div class="form-group">
-
-                    <label for="skills">
-                        Skills
-                    </label>
-
-                    <textarea
-                        id="skills"
-                        name="skills"
-                        placeholder="Example: HTML, CSS, JavaScript, Java, C..."
-                    ></textarea>
-
+                <div class="section-title">
+                    Skills
                 </div>
 
-            </section>
+                <div class="input-group">
+                    <label for="skills">Skills</label>
+                    <textarea
+                        id="skills"
+                        placeholder="Example: HTML, CSS, JavaScript, Java..."
+                    ></textarea>
+                </div>
+
+            </div>
 
 
             <!-- Projects -->
+            <div class="form-card">
 
-            <section class="form-section">
-
-                <h2>Projects</h2>
-
-                <div class="form-group">
-
-                    <label for="projects">
-                        Projects
-                    </label>
-
-                    <textarea
-                        id="projects"
-                        name="project"
-                        placeholder="Describe your projects..."
-                    ></textarea>
-
+                <div class="section-title">
+                    Projects
                 </div>
 
-            </section>
+                <div class="input-group">
+                    <label for="projects">Projects</label>
+                    <textarea
+                        id="projects"
+                        placeholder="Describe your projects..."
+                    ></textarea>
+                </div>
+
+            </div>
 
 
             <!-- Work Experience -->
+            <div class="form-card">
 
-            <section class="form-section">
-
-                <h2>Work Experience</h2>
-
-                <div class="form-group">
-
-                    <label for="experience">
-                        Work Experience
-                    </label>
-
-                    <textarea
-                        id="experience"
-                        name="work_experience"
-                        placeholder="Company, position, responsibilities, etc."
-                    ></textarea>
-
+                <div class="section-title">
+                    Work Experience
                 </div>
 
-            </section>
+                <div class="input-group">
+                    <label for="experience">Work Experience</label>
+                    <textarea
+                        id="experience"
+                        placeholder="Describe your work experience..."
+                    ></textarea>
+                </div>
+
+            </div>
 
 
             <!-- Social Links -->
+            <div class="form-card">
 
-            <section class="form-section">
-
-                <h2>Social Media / Website</h2>
-
-                <div class="form-group">
-
-                    <label for="socialLinks">
-                        Links
-                    </label>
-
-                    <textarea
-                        id="socialLinks"
-                        name="social_links"
-                        placeholder="Facebook, Instagram, GitHub, personal website, etc."
-                    ></textarea>
-
+                <div class="section-title">
+                    Social Links
                 </div>
 
-            </section>
+                <div class="input-group">
+                    <label for="socialLinks">Social Links</label>
+                    <textarea
+                        id="socialLinks"
+                        placeholder="Facebook, GitHub, LinkedIn, etc."
+                    ></textarea>
+                </div>
+
+            </div>
 
 
-            <!-- Buttons -->
-
-            <div class="button-area">
+            <!-- SAVE BUTTON -->
+            <div class="save-container">
 
                 <button
                     type="submit"
@@ -514,13 +326,6 @@
                 >
                     Save Portfolio
                 </button>
-
-                <a
-                    href="index.html"
-                    class="back-btn"
-                >
-                    ← Back to Home
-                </a>
 
             </div>
 
@@ -530,14 +335,13 @@
 
 
     <!-- Supabase -->
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+    <!-- Your Supabase configuration -->
     <script src="supabase.js"></script>
 
 
     <!-- Save Portfolio -->
-
     <script>
 
         const form =
@@ -555,12 +359,9 @@
                     data,
                     error
                 } = await supabase
-
                     .from("portfolios")
-
                     .insert([
                         {
-
                             full_name:
                                 document
                                 .getElementById("fullName")
@@ -610,7 +411,6 @@
                                 document
                                 .getElementById("socialLinks")
                                 .value
-
                         }
                     ]);
 
@@ -636,10 +436,10 @@
                 form.reset();
 
             }
-
         );
 
     </script>
 
 </body>
+
 </html>
