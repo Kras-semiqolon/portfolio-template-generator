@@ -12,10 +12,10 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
         }
 
         body {
+            font-family: Arial, sans-serif;
             min-height: 100vh;
             background: linear-gradient(
                 135deg,
@@ -23,6 +23,7 @@
                 #e0e7ff,
                 #f3e8ff
             );
+            color: #1f2937;
             padding-bottom: 50px;
         }
 
@@ -33,22 +34,23 @@
                 #7c3aed
             );
             color: white;
-            padding: 25px 20px;
             text-align: center;
+            padding: 30px 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
         header h1 {
-            font-size: 28px;
-            margin-bottom: 6px;
+            font-size: 30px;
+            margin-bottom: 8px;
         }
 
         header p {
-            font-size: 14px;
+            font-size: 15px;
             opacity: 0.9;
         }
 
         main {
+            width: 100%;
             max-width: 800px;
             margin: 30px auto;
             padding: 0 15px;
@@ -56,16 +58,16 @@
 
         .form-card {
             background: white;
+            border-radius: 18px;
             padding: 25px;
             margin-bottom: 20px;
-            border-radius: 18px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
         }
 
         .section-title {
+            color: #4f46e5;
             font-size: 20px;
             font-weight: bold;
-            color: #4f46e5;
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid #e0e7ff;
@@ -75,10 +77,15 @@
             margin-bottom: 18px;
         }
 
+        .input-group:last-child {
+            margin-bottom: 0;
+        }
+
         label {
             display: block;
-            font-weight: bold;
             margin-bottom: 7px;
+            font-size: 15px;
+            font-weight: bold;
             color: #374151;
         }
 
@@ -90,6 +97,7 @@
             border-radius: 10px;
             font-size: 15px;
             outline: none;
+            background: white;
             transition: 0.2s;
         }
 
@@ -100,7 +108,7 @@
         }
 
         textarea {
-            min-height: 110px;
+            min-height: 120px;
             resize: vertical;
         }
 
@@ -111,8 +119,8 @@
 
         .save-btn {
             width: 100%;
-            max-width: 350px;
-            padding: 15px 25px;
+            max-width: 360px;
+            padding: 16px 25px;
             border: none;
             border-radius: 12px;
             background: linear-gradient(
@@ -130,16 +138,41 @@
 
         .save-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
         }
 
         .save-btn:active {
             transform: translateY(0);
         }
 
+        .save-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #saveStatus {
+            margin-top: 15px;
+            font-size: 15px;
+            font-weight: bold;
+            min-height: 20px;
+        }
+
+        .success {
+            color: #16a34a;
+        }
+
+        .error {
+            color: #dc2626;
+        }
+
+        .saving {
+            color: #4f46e5;
+        }
+
         @media (max-width: 600px) {
+
             header h1 {
-                font-size: 24px;
+                font-size: 25px;
             }
 
             .form-card {
@@ -153,15 +186,20 @@
 
     <header>
         <h1>Create Your Portfolio</h1>
-        <p>Fill in your information to create your portfolio.</p>
+        <p>Enter your information to build your portfolio.</p>
     </header>
+
 
     <main>
 
-        <!-- IMPORTANT: The form ID must match the JavaScript -->
+        <!--
+            IMPORTANT:
+            This form ID is used by JavaScript.
+        -->
         <form id="portfolioForm">
 
-            <!-- Personal Information -->
+
+            <!-- PERSONAL INFORMATION -->
             <div class="form-card">
 
                 <div class="section-title">
@@ -169,7 +207,10 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="fullName">Full Name</label>
+                    <label for="fullName">
+                        Full Name
+                    </label>
+
                     <input
                         type="text"
                         id="fullName"
@@ -178,8 +219,12 @@
                     >
                 </div>
 
+
                 <div class="input-group">
-                    <label for="email">Email</label>
+                    <label for="email">
+                        Email
+                    </label>
+
                     <input
                         type="email"
                         id="email"
@@ -188,8 +233,12 @@
                     >
                 </div>
 
+
                 <div class="input-group">
-                    <label for="contact">Contact Number</label>
+                    <label for="contact">
+                        Contact Number
+                    </label>
+
                     <input
                         type="text"
                         id="contact"
@@ -197,8 +246,12 @@
                     >
                 </div>
 
+
                 <div class="input-group">
-                    <label for="address">Address</label>
+                    <label for="address">
+                        Address
+                    </label>
+
                     <input
                         type="text"
                         id="address"
@@ -209,7 +262,7 @@
             </div>
 
 
-            <!-- About Me -->
+            <!-- ABOUT ME -->
             <div class="form-card">
 
                 <div class="section-title">
@@ -217,17 +270,22 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="about">About Me</label>
+
+                    <label for="about">
+                        About Me
+                    </label>
+
                     <textarea
                         id="about"
                         placeholder="Tell us about yourself..."
                     ></textarea>
+
                 </div>
 
             </div>
 
 
-            <!-- Education -->
+            <!-- EDUCATION -->
             <div class="form-card">
 
                 <div class="section-title">
@@ -235,17 +293,22 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="education">Education</label>
+
+                    <label for="education">
+                        Education
+                    </label>
+
                     <textarea
                         id="education"
                         placeholder="Enter your educational background..."
                     ></textarea>
+
                 </div>
 
             </div>
 
 
-            <!-- Skills -->
+            <!-- SKILLS -->
             <div class="form-card">
 
                 <div class="section-title">
@@ -253,17 +316,22 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="skills">Skills</label>
+
+                    <label for="skills">
+                        Skills
+                    </label>
+
                     <textarea
                         id="skills"
                         placeholder="Example: HTML, CSS, JavaScript, Java..."
                     ></textarea>
+
                 </div>
 
             </div>
 
 
-            <!-- Projects -->
+            <!-- PROJECTS -->
             <div class="form-card">
 
                 <div class="section-title">
@@ -271,17 +339,22 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="projects">Projects</label>
+
+                    <label for="projects">
+                        Projects
+                    </label>
+
                     <textarea
                         id="projects"
                         placeholder="Describe your projects..."
                     ></textarea>
+
                 </div>
 
             </div>
 
 
-            <!-- Work Experience -->
+            <!-- WORK EXPERIENCE -->
             <div class="form-card">
 
                 <div class="section-title">
@@ -289,17 +362,22 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="experience">Work Experience</label>
+
+                    <label for="experience">
+                        Work Experience
+                    </label>
+
                     <textarea
                         id="experience"
                         placeholder="Describe your work experience..."
                     ></textarea>
+
                 </div>
 
             </div>
 
 
-            <!-- Social Links -->
+            <!-- SOCIAL LINKS -->
             <div class="form-card">
 
                 <div class="section-title">
@@ -307,48 +385,60 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="socialLinks">Social Links</label>
+
+                    <label for="socialLinks">
+                        Social Links
+                    </label>
+
                     <textarea
                         id="socialLinks"
-                        placeholder="Facebook, GitHub, LinkedIn, etc."
+                        placeholder="GitHub, Facebook, LinkedIn, etc."
                     ></textarea>
+
                 </div>
 
             </div>
 
 
-            <!-- SAVE BUTTON -->
+            <!-- SAVE -->
             <div class="save-container">
 
                 <button
                     type="submit"
                     class="save-btn"
+                    id="saveButton"
                 >
                     Save Portfolio
                 </button>
 
+                <p id="saveStatus"></p>
+
             </div>
+
 
         </form>
 
     </main>
 
 
-    <!-- Supabase -->
+    <!-- SUPABASE LIBRARY -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- Your Supabase configuration -->
+    <!-- YOUR SUPABASE CONNECTION -->
     <script src="supabase.js"></script>
 
-<script>
-    alert("JavaScript is working!");
-</script>
-  
-    <!-- Save Portfolio -->
+
+    <!-- SAVE PORTFOLIO -->
     <script>
 
         const form =
             document.getElementById("portfolioForm");
+
+        const saveButton =
+            document.getElementById("saveButton");
+
+        const saveStatus =
+            document.getElementById("saveStatus");
 
 
         form.addEventListener(
@@ -358,85 +448,196 @@
                 event.preventDefault();
 
 
-                const {
-                    data,
-                    error
-                } = await supabase
-                    .from("portfolios")
-                    .insert([
-                        {
-                            full_name:
-                                document
-                                .getElementById("fullName")
-                                .value,
+                /*
+                    Show that the button actually worked.
+                */
 
-                            email:
-                                document
-                                .getElementById("email")
-                                .value,
+                saveButton.disabled = true;
 
-                            contact_number:
-                                document
-                                .getElementById("contact")
-                                .value,
+                saveButton.textContent =
+                    "Saving...";
 
-                            address:
-                                document
-                                .getElementById("address")
-                                .value,
+                saveStatus.textContent =
+                    "Saving your portfolio...";
 
-                            about_me:
-                                document
-                                .getElementById("about")
-                                .value,
-
-                            education:
-                                document
-                                .getElementById("education")
-                                .value,
-
-                            skills:
-                                document
-                                .getElementById("skills")
-                                .value,
-
-                            project:
-                                document
-                                .getElementById("projects")
-                                .value,
-
-                            work_experience:
-                                document
-                                .getElementById("experience")
-                                .value,
-
-                            social_links:
-                                document
-                                .getElementById("socialLinks")
-                                .value
-                        }
-                    ]);
+                saveStatus.className =
+                    "saving";
 
 
-                if (error) {
+                try {
 
-                    console.error(error);
+                    /*
+                        Check that Supabase loaded.
+                    */
 
-                    alert(
-                        "Error saving portfolio:\n"
-                        + error.message
+                    if (
+                        typeof supabase === "undefined"
+                    ) {
+                        throw new Error(
+                            "Supabase is not loaded. Check supabase.js."
+                        );
+                    }
+
+
+                    /*
+                        Get the values from the form.
+                    */
+
+                    const portfolio = {
+
+                        full_name:
+                            document
+                            .getElementById("fullName")
+                            .value
+                            .trim(),
+
+                        email:
+                            document
+                            .getElementById("email")
+                            .value
+                            .trim(),
+
+                        contact_number:
+                            document
+                            .getElementById("contact")
+                            .value
+                            .trim(),
+
+                        address:
+                            document
+                            .getElementById("address")
+                            .value
+                            .trim(),
+
+                        about_me:
+                            document
+                            .getElementById("about")
+                            .value
+                            .trim(),
+
+                        education:
+                            document
+                            .getElementById("education")
+                            .value
+                            .trim(),
+
+                        skills:
+                            document
+                            .getElementById("skills")
+                            .value
+                            .trim(),
+
+                        project:
+                            document
+                            .getElementById("projects")
+                            .value
+                            .trim(),
+
+                        work_experience:
+                            document
+                            .getElementById("experience")
+                            .value
+                            .trim(),
+
+                        social_links:
+                            document
+                            .getElementById("socialLinks")
+                            .value
+                            .trim()
+                    };
+
+
+                    /*
+                        Send the portfolio to Supabase.
+                    */
+
+                    const result =
+                        await supabase
+                        .from("portfolios")
+                        .insert([portfolio])
+                        .select();
+
+
+                    const data =
+                        result.data;
+
+                    const error =
+                        result.error;
+
+
+                    /*
+                        If Supabase returns an error,
+                        show it on the page.
+                    */
+
+                    if (error) {
+
+                        console.error(
+                            "Supabase error:",
+                            error
+                        );
+
+                        throw new Error(
+                            error.message
+                        );
+                    }
+
+
+                    /*
+                        SUCCESS
+                    */
+
+                    console.log(
+                        "Portfolio saved:",
+                        data
                     );
 
-                    return;
+
+                    saveButton.disabled =
+                        false;
+
+                    saveButton.textContent =
+                        "Saved ✓";
+
+                    saveStatus.textContent =
+                        "Portfolio saved successfully!";
+
+                    saveStatus.className =
+                        "success";
+
+
+                    /*
+                        Clear the form after saving.
+                    */
+
+                    form.reset();
+
+
+                } catch (error) {
+
+                    /*
+                        ERROR
+                    */
+
+                    console.error(
+                        "Save error:",
+                        error
+                    );
+
+
+                    saveButton.disabled =
+                        false;
+
+                    saveButton.textContent =
+                        "Save Portfolio";
+
+                    saveStatus.textContent =
+                        "Error: " +
+                        error.message;
+
+                    saveStatus.className =
+                        "error";
                 }
-
-
-                alert(
-                    "Portfolio saved successfully!"
-                );
-
-
-                form.reset();
 
             }
         );
