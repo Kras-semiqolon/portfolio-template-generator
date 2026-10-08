@@ -2,7 +2,7 @@ const SUPABASE_URL =
     "https://gptdvdqmulmxabhgdniu.supabase.co";
 
 const SUPABASE_KEY =
-    "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+    "sb_publishable_dxskvC3dCtvR-CfvPUgo_A_Ydky-adt";
 
 const supabase =
     window.supabase.createClient(
