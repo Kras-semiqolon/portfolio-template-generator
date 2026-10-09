@@ -146,7 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var editId = new URLSearchParams(window.location.search).get("id");
 
-    // form field id -> database column
     var fields = {
         fullName: "full_name", email: "email", contactNumber: "contact_number",
         address: "address", aboutMe: "about_me", education: "education",
@@ -171,7 +170,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("manageButton").onclick = function () { go("manage.html"); };
     document.getElementById("galleryButton").onclick = function () { go("gallery.html"); };
 
-    // ---------- IMAGE CHOOSER ----------
     function showPhoto(src) {
         photoPreview.src = src || "";
         photoPreview.style.display = src ? "block" : "none";
@@ -197,7 +195,6 @@ document.addEventListener("DOMContentLoaded", function () {
         reader.readAsDataURL(file);
     });
 
-    // ---------- EDIT MODE ----------
     if (editId) {
         document.getElementById("pageTitle").textContent = "Edit Your Portfolio";
         saveButton.textContent = "Update Portfolio";
@@ -222,7 +219,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    // ---------- SAVE / UPDATE ----------
     form.addEventListener("submit", async function (event) {
         event.preventDefault();
 
@@ -280,5 +276,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
+<script src="prefs.js"></script>
 </body>
 </html>
