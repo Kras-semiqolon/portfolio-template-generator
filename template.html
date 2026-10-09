@@ -17,7 +17,7 @@ p.sub { color: #555; margin-bottom: 20px; }
 .opt.selected { border-color: #7c3aed; }
 .opt h2 { margin-bottom: 4px; }
 .opt span { color: #666; font-size: 14px; }
-button { width: 100%; margin-top: 8px; padding: 16px; border: none; border-radius: 12px; color: white; font-size: 17px; font-weight: bold; background: linear-gradient(135deg, #4f46e5, #7c3aed); cursor: pointer; }
+#saveBtn { width: 100%; margin-top: 8px; padding: 16px; border: none; border-radius: 12px; color: white; font-size: 17px; font-weight: bold; background: linear-gradient(135deg, #4f46e5, #7c3aed); cursor: pointer; }
 .status { margin-top: 14px; text-align: center; font-weight: bold; }
 </style>
 </head>
@@ -93,5 +93,6 @@ document.getElementById("saveBtn").onclick = async function () {
     window.location.href = "portfolio.html?id=" + encodeURIComponent(id);
 };
 </script>
+<script src="prefs.js"></script>
 </body>
 </html>
